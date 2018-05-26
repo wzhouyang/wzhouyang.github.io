@@ -1,0 +1,85 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>ElasticSearch-数据 | wenzy</title><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/5.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.2/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.2/grids-responsive-min.css"><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.1"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">ElasticSearch-数据</h1><a id="logo" href="/.">wenzy</a><p class="description"></p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">ElasticSearch-数据</h1><div class="post-meta">Mar 16, 2017<script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> Hits</span></span></div><a data-thread-key="2017/03/16/ElasticSearch-数据/" href="/2017/03/16/ElasticSearch-数据/#comments" class="ds-thread-count"></a><div class="post-content"><h2 id="文档"><a href="#文档" class="headerlink" title="文档"></a>文档</h2><p>在ElasticSearch中，<strong>文档</strong>指被存储到唯一ID下由高级或者根对象(root object)序列化而来的JSON</p>
+<h3 id="文档元数据"><a href="#文档元数据" class="headerlink" title="文档元数据"></a>文档元数据</h3><p>一个文档不只包含了数据。它还包含了元数据(metadata) —— 关于文档的信息。有三个元数据元素是必须存在的，它们是：</p>
+<table>
+<thead>
+<tr>
+<th>名字</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>_index</td>
+<td>文档存储的地方</td>
+</tr>
+<tr>
+<td>_type</td>
+<td>文档代表的对象种类</td>
+</tr>
+<tr>
+<td>_id</td>
+<td>文档的唯一编号</td>
+</tr>
+</tbody>
+</table>
+<h4 id="index"><a href="#index" class="headerlink" title="_index"></a>_index</h4><p>索引 类似于传统数据库中的”数据库”——也就是我们存储并且索引相关数据的地方。</p>
+<blockquote>
+<p>在Elasticsearch中，我们的数据都在分片中被存储以及索引，索引只是一个逻辑命名空间，它可以将一个或多个分片组合在一起。然而，这只是一个内部的运作原理——我们的程序可以根本不用关心分片。对于我们的程序来说，我们的文档存储在索引中。剩下的交给Elasticsearch就可以了。</p>
+</blockquote>
+<h4 id="type"><a href="#type" class="headerlink" title="_type"></a>_type</h4><p>在程序中，我们使用对象代表物品。比如：用户等。</p>
+<h4 id="id"><a href="#id" class="headerlink" title="_id"></a>_id</h4><p>id是一个字符串，当它与_index以及_type组合时，就可以来代表Elasticsearch中一个特定的文档。我们创建了一个新的文档时，你可以自己提供一个_id，或者也可以让Elasticsearch帮你生成一个。</p>
+<h3 id="索引一个文档"><a href="#索引一个文档" class="headerlink" title="索引一个文档"></a>索引一个文档</h3><p>文档通过索引API被索引——存储并使其可搜索。但是最开始我们需要决定我们将文档存储在哪里。正如之前提到的，一篇文档通过_index, _type以及_id来确定它的唯一性。我们可以自己提供一个_id，或者也使用indexAPI 帮我们生成一个。</p>
+<h3 id="搜索文档"><a href="#搜索文档" class="headerlink" title="搜索文档"></a>搜索文档</h3><p><code>GET /website/blog/123?pretty</code></p>
+<p>在任意的查询字符串中添加<em>pretty</em>参数，类似上面的请求，ES就会优化输出的JSON.<br>结果中的{“found”:true}意味结果被索引到，如果请求了一个不存在的文档,依然得到一个JSON反馈，只是found的结果为false.</p>
+<p>同样,有结果HTTP状态码“200”， 无结果“404”</p>
+<h4 id="检索文档中的一部分"><a href="#检索文档中的一部分" class="headerlink" title="检索文档中的一部分"></a>检索文档中的一部分</h4><p><code>GET /website/blog/123?_source=title,text</code></p>
+<p>只得到_source部分</p>
+<p><code>GET /website/blog/123/_source</code></p>
+<h4 id="检查文档是否存在"><a href="#检查文档是否存在" class="headerlink" title="检查文档是否存在"></a>检查文档是否存在</h4><p>如果确实想检查一下文档是否存在，你可以试用HEAD来替代GET方法，这样就是会返回HTTP头文件：</p>
+<p><code>curl -i -XHEAD /website/blog/123</code></p>
+<h3 id="更新整个文档"><a href="#更新整个文档" class="headerlink" title="更新整个文档"></a>更新整个文档</h3><p>在Documents中的文档是不可改变的。</p>
+<p>更新过程：</p>
+<ol>
+<li>从旧的文档中检索JSON</li>
+<li>修改它</li>
+<li>删除修的文档</li>
+<li>索引一个新的文档</li>
+</ol>
+<h3 id="创建一个文档"><a href="#创建一个文档" class="headerlink" title="创建一个文档"></a>创建一个文档</h3><p>_index,_type以及_id组成了唯一的文档标记</p>
+<p>使用自增_id创建全新的文档</p>
+<p><code>POST /website/blog/</code></p>
+<p>使用已经自定好的id创建一个文档</p>
+<p><code>PUT /website/blog/123</code></p>
+<p>如果使用自定id,需要告诉ES只有当_index，_type以及_id这3个属性全部相同的文档不存在时才接受我们的请求。</p>
+<ul>
+<li><p>方法一</p>
+<p>  在查询中添加op_type参数：</p>
+<p>  <code>PUT /website/blog/123?op_type=create</code></p>
+</li>
+<li><p>方法二<br>  在请求最后添加 /_create:</p>
+<p>  <code>PUT /website/blog/123/_create</code></p>
+</li>
+</ul>
+<p>如果成功创建了新的文档，Elasticsearch将会返回常见的元数据以及201 Created的HTTP反馈码。</p>
+<p>而如果存在同名文件，Elasticsearch将会返回一个409 Conflict的HTTP反馈码</p>
+<h3 id="删除一个文档"><a href="#删除一个文档" class="headerlink" title="删除一个文档"></a>删除一个文档</h3><p><code>DELETE /website/blog/123</code></p>
+<p>如果文档存在,返回http状态码：200，_version值加1<br>如果文档不存在，返回http状态码：404 </p>
+<h3 id="获取多个文档"><a href="#获取多个文档" class="headerlink" title="获取多个文档"></a>获取多个文档</h3><p>ES支持将多个请求合并,使用multi-get或者mget</p>
+<h3 id="批量更高效"><a href="#批量更高效" class="headerlink" title="批量更高效"></a>批量更高效</h3><p>bulk</p>
+</div><script type="text/javascript" src="/js/share.js?v=0.0.1" async></script><a data-url="http://blog.wenzy.top/2017/03/16/ElasticSearch-数据/" data-id="cjhnh17oq000b2icotpa1vsbq" class="article-share-link">分享到</a><div class="tags"><a href="/tags/ElasticSearch/">ElasticSearch</a></div><div class="post-nav"><a href="/2017/03/16/ElasticSearch-存储/" class="pre">elasticsearch-存储</a><a href="/2017/03/15/ElasticSearch-cluster/" class="next">ElasticSearch-cluster</a></div><div data-thread-key="2017/03/16/ElasticSearch-数据/" data-title="ElasticSearch-数据" data-url="http://blog.wenzy.top/2017/03/16/ElasticSearch-数据/" data-author-key="1" class="ds-thread"></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form action="//www.baidu.com/baidu" method="get" accept-charset="utf-8" target="_blank" class="search-form"><input type="search" name="word" maxlength="20" placeholder="Search"/><input type="hidden" name="si" value="http://blog.wenzy.top"/><input name="tn" type="hidden" value="bds"/><input name="cl" type="hidden" value="3"/><input name="ct" type="hidden" value="2097152"/><input name="s" type="hidden" value="on"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/">数据库</a><span class="category-list-count">1</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/mysql/" style="font-size: 15px;">mysql</a> <a href="/tags/lua/" style="font-size: 15px;">lua</a> <a href="/tags/ElasticSearch/" style="font-size: 15px;">ElasticSearch</a> <a href="/tags/IntelliIdea-mybatis/" style="font-size: 15px;">IntelliIdea mybatis</a> <a href="/tags/java基础-equals-hashcode/" style="font-size: 15px;">java基础 equals hashcode</a> <a href="/tags/JVM/" style="font-size: 15px;">JVM</a> <a href="/tags/hexo/" style="font-size: 15px;">hexo</a> <a href="/tags/github/" style="font-size: 15px;">github</a> <a href="/tags/博客/" style="font-size: 15px;">博客</a> <a href="/tags/java8-lambda/" style="font-size: 15px;">java8 lambda</a> <a href="/tags/代码规范/" style="font-size: 15px;">代码规范</a> <a href="/tags/spring-data-redis-lua/" style="font-size: 15px;">spring-data-redis lua</a> <a href="/tags/java8-lambda-stream/" style="font-size: 15px;">java8 lambda stream</a> <a href="/tags/java-命令/" style="font-size: 15px;">java 命令</a> <a href="/tags/数据库/" style="font-size: 15px;">数据库</a> <a href="/tags/ElasticSearch-cluster-搜索/" style="font-size: 15px;">ElasticSearch cluster 搜索</a> <a href="/tags/主从/" style="font-size: 15px;">主从</a> <a href="/tags/数据库-oracle-mybatis/" style="font-size: 15px;">数据库 oracle mybatis</a> <a href="/tags/mysql-性能/" style="font-size: 15px;">mysql 性能</a> <a href="/tags/redis-集群/" style="font-size: 15px;">redis 集群</a> <a href="/tags/linux-scp/" style="font-size: 15px;">linux scp</a> <a href="/tags/spring-boot/" style="font-size: 15px;">spring boot</a> <a href="/tags/spring-cloud-zuul/" style="font-size: 15px;">spring-cloud zuul</a> <a href="/tags/springcloud-eureka/" style="font-size: 15px;">springcloud eureka</a> <a href="/tags/spring-事务/" style="font-size: 15px;">spring 事务</a> <a href="/tags/数据库-事务/" style="font-size: 15px;">数据库 事务</a> <a href="/tags/mysql-读写分离/" style="font-size: 15px;">mysql 读写分离</a> <a href="/tags/电商-库存/" style="font-size: 15px;">电商 库存</a> <a href="/tags/微服务/" style="font-size: 15px;">微服务</a> <a href="/tags/java基础-comparable-comparator/" style="font-size: 15px;">java基础 comparable comparator</a> <a href="/tags/面试/" style="font-size: 15px;">面试</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最新文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/10/31/mysql-explain详解/">mysql explain详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/26/京东到家库存系统/">京东到家库存系统</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/21/简单介绍Java中Comparable和Comparator/">简单介绍Java中Comparable和Comparator</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/21/Java中的equals-和hashcode-之间关系/">Java中的equals()和hashcode()之间关系</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/20/java命令学习/">java命令学习</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/20/JVM实用参数/">JVM实用参数</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/25/面试总结/">面试总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/19/几种常见的微服务编排模式/">几种常见的微服务编排模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/12/checkstyle标准checks/">checkstyle标准checks</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/24/spring-cloud-zuul的一些记录/">spring-cloud-zuul的一些记录</a></li></ul></div><div class="widget"><div class="comments-title"><i class="fa fa-comment-o"> 最近评论</i></div><div data-num-items="5" data-show-avatars="0" data-show-time="1" data-show-admin="0" data-excerpt-length="32" data-show-title="1" class="ds-recent-comments"></div></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">© <a href="/." rel="nofollow">wenzy.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a id="rocket" href="#top" class="show"></a><script type="text/javascript" src="/js/totop.js?v=0.0.1" async></script><script>var duoshuoQuery = {short_name:'wenzy'};
+(function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?fac8b898e6b30b65932e452ab3fce342";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+  })();
+</script><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.1"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.1"></script></div></body></html>

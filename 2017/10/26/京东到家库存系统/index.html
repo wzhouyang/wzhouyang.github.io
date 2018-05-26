@@ -1,0 +1,126 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>京东到家库存系统 | wenzy</title><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/5.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.2/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.2/grids-responsive-min.css"><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.1"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">京东到家库存系统</h1><a id="logo" href="/.">wenzy</a><p class="description"></p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">京东到家库存系统</h1><div class="post-meta">Oct 26, 2017<script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> Hits</span></span></div><a data-thread-key="2017/10/26/京东到家库存系统/" href="/2017/10/26/京东到家库存系统/#comments" class="ds-thread-count"></a><div class="post-content"><p>转自：<a href="http://www.infoq.com/cn/articles/jingdongdaojia-inventory-system?utm_campaign=infoq_content&amp;utm_source=infoq&amp;utm_medium=feed&amp;utm_term=global" target="_blank" rel="external">InfoQ</a></p>
+<p>目前，京东到家库存系统经历两年多的线上考验与技术迭代，现服务着万级商家、十万级店铺的规模，在需求变更与技术演进中，如何做到系统的稳定性与高可用？下面将会给你揭晓答案。</p>
+<p><img src="京东到家库存系统/271-1508945703836.jpg" alt="logo"></p>
+<p>上图如果进行总结下，主要体现出以下几个方面:</p>
+<p><strong>完善的基础设施</strong></p>
+<p>强大的基础服务平台让应用、JVM、Docker、物理机所有健康指标一目了然，7*24 小时智能监控告警让开发无须一直盯着监控；</p>
+<p><strong>数据驱动</strong></p>
+<p>数据与业务相辅相成，用数据验证业务需求，迭代业务需求，让业务需求都尽可能的收益最大化，库存系统的开发同学只需要关注业务需求；</p>
+<p><strong>健全的测试团队</strong></p>
+<p>大版本上线前相应的测试同学会跟进压测，防止上线后潜在的性能瓶颈。</p>
+<h1 id="库存系统技术架构图解释说明"><a href="#库存系统技术架构图解释说明" class="headerlink" title="库存系统技术架构图解释说明"></a>库存系统技术架构图解释说明</h1><p><strong>Portal</strong></p>
+<p>通过提供商家 PC 端、App 端解决大部分中小商家的日常运营需求，另外提供开放平台满足大中型商家系统对接与数据共享互通的问题。</p>
+<p><strong>Service</strong></p>
+<p>这个板块涵盖了整个库存最核心的 C&amp;B 数据业务。</p>
+<p><strong>1、业务类</strong></p>
+<ul>
+<li>C 正常流程：用户下单 - 商家拣货 - 快递员妥投</li>
+<li>C 异常流程 - 缺货：用户下单 - 商家缺货 - 用户协商 - 调整订单缺货商品 - 商家拣货 - 快递员妥投</li>
+<li>C 异常流程 - 取消：用户下单 - 用户反悔 - 订单取消</li>
+<li>C 异常流程 - 风控：用户下单 - 风控拦截 - 订单锁定 - 客服审核 - 订单取消 / 继续生产</li>
+<li>B 正常流程：商家维护可售库存数量，即时或者定时生效</li>
+</ul>
+<p><strong>2、数据类</strong></p>
+<p>除了业务类需求外，京东到家还提供了大量有商业价值的数据供商家作业务决策，比如：</p>
+<ul>
+<li>商品销量 Top 榜 - 支持分城市分类目筛选</li>
+<li>热销商品库存不足预警 - 商家 App 版本 Push 通知及待办事项中可以醒目识别这部分商品并进行维护</li>
+<li>红黄线自动下架 - 近七日订单量大于 5 单，并且被踩率大于等于 20% 的商品，进行下架操作，每日执行。</li>
+<li>库存交易流水</li>
+</ul>
+<p><strong>3、中间件类</strong></p>
+<p>古人行军打仗，兵马未动，粮草先行，对于系统来说亦是如此，编码未动架构先行，架构的技术选型非常重要，在这里给大家分享京东技术体系上万码农都在使用的几个中间件。</p>
+<ul>
+<li>JSF，类似于 DUBBO, 是一款非常优秀的 RPC 层框架，可以解决应用间的数据通信问题，它最主要的优势是长连接的实现以及高效的序列化组件。</li>
+<li>JMQ，JMQ 是京东自主研发的一款消息中间件系统，具有高可用、数据高可靠等特性。广泛应用于公司内部系统，包括订单、支付、库房、交易等场景。在库存系统中会优先更新 Redis 缓存数据，并发送变更 MQ，供 MySQL 及 ES 异步更新。</li>
+<li>O2OWORKER，早期淘宝开源的一款产品 TBSCHEDULE，不这个只适用于单项目管理，多个系统使用的话权限无法隔离，另外参数配置过于繁琐，结合这两点进行了重构，从而形成了现在的整个京东到家都在使用的任务管理平台。</li>
+</ul>
+<p><strong>DB</strong></p>
+<p><strong>1、MySQL</strong></p>
+<p>京东到家库存系统使用的关系型数据库是 MySQL，低成本、低耦合、轻量级，总之优势多多。</p>
+<p><strong>2、Redis</strong></p>
+<p>丰富的数据结构 &amp; 众多的原子性命令支持，非常适合库存系统进行缓存查询及扣减操作。</p>
+<p><strong>3、ES</strong></p>
+<p>库存系统的数据量非常大，首先 MySQL 数据库通过水平扩容来解决单表数据量过大的问题，水平扩容的规则采取的是按门店维度进行分表（1. 目前京东到家还没有到分库的阶段，2. 按门店维度进行分表数据量会相对均衡一些，所以没有按照商家维度进行划分）。</p>
+<p>那么在商家 PC 端上查询所有商品库存及维护库存时带来了难度，比如查询该商家下所有的商品有多少条，同时处于上架状态的商品有哪些……，为了解决这一难题，引入了 ES，将数据统一存储在 ES 集群中，解决一些涉及到聚合查询的场景。</p>
+<h1 id="库存系统数据流转"><a href="#库存系统数据流转" class="headerlink" title="库存系统数据流转"></a>库存系统数据流转</h1><p><img src="京东到家库存系统/262-1508945703835.jpg" alt="logo"></p>
+<p>库存系统数据流转图</p>
+<p>库存系统数据流转图解释说明：</p>
+<p>库存系统的数据流转，指的都是销售库存的数据流转，在京东到家还有自营类业务板块，即上图中提到的城市仓，由于它涉及到采购入库及盘盈盘亏等问题, 所以会由一套 WMS 系统来支撑。</p>
+<p>京东到家设计初衷就是希望商家下的商品各门店共享，带来的问题就是商家新建一个商品时，需要推送到商家下所有的门店中，即所有的门店均可以看到这个商品。或者商家新建一个门店时，需要将商家下所有的商品均推送到这个新建的门店中，所以这采用了 MQ 技术进行异步化批量处理。</p>
+<p>写到这里，相信对大家对库存系统有了初步的了解，从上图来看功能上其实并不复杂，但是他面临的技术复杂度却是相当高的，比如秒杀品在高并发的情况下如何防止超卖。</p>
+<p>另外库存系统还不是一个纯技术的系统，需要结合用户的行为特点来考虑，比如下文中提到什么时间进行库存的扣减最合适，我们先抛出几个问题和大家一起探讨下，如有不妥之处，欢迎大家拍砖。</p>
+<h1 id="库存什么时候进行预占-或者扣减-呢"><a href="#库存什么时候进行预占-或者扣减-呢" class="headerlink" title="库存什么时候进行预占 (或者扣减) 呢"></a>库存什么时候进行预占 (或者扣减) 呢</h1><p>商家销售的商品数量是有限的，用户下单后商品会被扣减，我们可以怎么实现呢？</p>
+<p>举个例子： 一件商品有 1000 个库存，现在有 1000 个用户，每个用户计划同时购买 1000 个。</p>
+<ul>
+<li>实现方案 1：如果用户加入购物车时进行库存预占，那么将只能有 1 个用户将 1000 个商品加入购物车。</li>
+<li>实现方案 2：如果用户提交订单时进行库存预占，那么将也只能有 1 个用户将 1000 个商品提单成功，其它的人均提示“库存不足，提单失败”。</li>
+<li>实现方案 3：如果用户提交订单 &amp; 支付成功时进行库存预占，那么这 1000 个人都能生成订单，但是只有 1 个人可以支付成功，其它的订单均会被自动取消。<br>京东到家目前采用的是 <strong>方案 2</strong> ，理由如下：</li>
+</ul>
+<p>用户可能只是暂时加入购物车，并不表示用户最终会提单并支付。</p>
+<p>所以在购物车进行库存校验并预占，会造成其它真正想买的用户不能加入购物车的情况，但是之前加车的用户一直不付款，最终损失的是公司。</p>
+<p>方案 3 会造成生成 1000 个订单，无论是在支付前校验库存还是在支付成功后再检验库存，都会造成用户准备好支付条件后却会出现 99.9% 的系统取消订单的概率，也就是说会给 99.9% 的用户体验到不爽的感觉。</p>
+<p>数据表明用户提交订单不支付的占比是非常小的（相对于加入购物车不购买的行为），目前京东到家给用户预留的最长支付时间是 30 分钟，超过 30 分钟订单自动取消，预占的库存自动释放。</p>
+<p>综上所述，方案 2 也可能由于用户下单预占库存但最终未支付，造成库存 30 分钟后才能被其它用户使用的情况，但是相较于方案 1，方案 3 无疑是折中的最好方案。</p>
+<h1 id="重复提交订单的问题？"><a href="#重复提交订单的问题？" class="headerlink" title="重复提交订单的问题？"></a>重复提交订单的问题？</h1><p>重复提交订单造成的库存重复扣减的后果是比较严重的。比如商家设置有 1000 件商品，而实际情况可能卖了 900 件就提示用户无货了，给商家造成无形的损失</p>
+<p>可能出现重复提交订单的情况：</p>
+<ul>
+<li>1、用户善意行为：app 上用户单击“提交订单”按钮后由于后端接口没有返回，用户以为没有操作成功会再次单击“提交订单”按钮</li>
+<li>2、用户恶意行为：黑客直接刷提单接口，绕过 App 端防重提交功能</li>
+<li><p>3、提单系统重试：比如提单系统为了提高系统的可用性，在第一次调用库存系统扣减接口超时后会重试再次提交扣减请求<br>好了，既然问题根源缕清楚了，我们一一对症下药</p>
+</li>
+<li><p>1、用户善意行为：App 侧在用户第一次单击“提交订单”按钮后对按钮进行置灰，禁止再次提交订单</p>
+</li>
+<li>2、用户恶意行为：采用令牌机制，用户每次进入结算页，提单系统会颁发一个令牌 ID（全局唯一），当用户点击“提交订单”按钮时发起的网络请求中会带上这个令牌 ID, 这个时候提单系统会优先进行令牌 ID 验证，令牌 ID 存在 &amp; 令牌 ID 访问次数 =1 的话才会放行处理后续逻辑，否则直接返回</li>
+<li>3、提单系统重试：这种情况则需要后端系统（比如库存系统）来保证接口的幂等性，每次调用库存系统时均带上订单号，库存系统会基于订单号增加一个分布式事务锁。</li>
+</ul>
+<p>伪代码如下：</p>
+<p><img src="京东到家库存系统/263-1508945703836.jpg" alt="logo"></p>
+<h1 id="库存数据的回滚机制如何做"><a href="#库存数据的回滚机制如何做" class="headerlink" title="库存数据的回滚机制如何做?"></a>库存数据的回滚机制如何做?</h1><p>需要库存回滚的场景也是比较多的，比如：</p>
+<ul>
+<li>1、用户未支付：用户下单后后悔了</li>
+<li>2、用户支付后取消：用户下单 &amp; 支付后后悔了</li>
+<li>3、风控取消：风控识别到异常行为，强制取消订单</li>
+<li>4、耦合系统故障：比如提交订单时提单系统 T1 同时会调用积分扣减系统 X1、库存扣减系统 X2、优惠券系统 X3，假如 X1、X2 成功后，调用 X3 失败，需要回滚用户积分与商家库存。<br>其中场景 1、2、3 比较类似，都会造成订单取消，订单中心取消后会发送 MQ 出来，各个系统保证自己能够正确消费订单取消 MQ 即可。</li>
+</ul>
+<p>而场景 4 订单其实尚未生成，相对来说要复杂些，如上面提到的，提单系统 T1 需要主动发起库存系统 X2、优惠券系统 X3 的回滚请求（入参必须带上订单号），X2、X3 回滚接口需要支持幂等性。</p>
+<p>其实针对场景 4，还存在一种极端情况，如果提单系统 T1 准备回滚时自身也宕机了，那么库存系统 X2、优惠券系统 X3 就必须依靠自己来完成回滚操作了，也就是说具备自我数据健康检查的能力，具体来说怎么实现呢？</p>
+<p>可以利用当前订单号所属的订单尚未生成的特点，可以通过 worker 机制，每次捞取 40 分钟（这里的 40 一定要大于容忍用户的支付时间）前的订单，调用订单中心查询订单的状态，确保不是已取消的，否则进行自我数据的回滚。</p>
+<h1 id="多人同时购买-1-件商品，如何安全地库存扣减？"><a href="#多人同时购买-1-件商品，如何安全地库存扣减？" class="headerlink" title="多人同时购买 1 件商品，如何安全地库存扣减？"></a>多人同时购买 1 件商品，如何安全地库存扣减？</h1><p>现实中同一件商品可能会出现多人同时购买的情况，我们可以如何做到并发安全呢？</p>
+<p>伪代码片段 1：</p>
+<p><img src="京东到家库存系统/174-1508945703836.jpg" alt="logo"></p>
+<p>伪代码片段 1 的设计思想是所有的请求过来之后首先加锁，强制其串行化处理，可见其效率一定不高。</p>
+<p>伪代码片段 2：</p>
+<p><img src="京东到家库存系统/175-1508945703836.jpg" alt="logo"></p>
+<p>这段代码只是在 where 条件里增加了and stockNum&gt;=”+requestBuyNum即可防止超卖的行为，达到了与上述伪代码 1 的功能。</p>
+<p>如果商品是促销品（比如参与了秒杀的商品）并发扣减的机率会更高，那么数据库的压力会更高，这个时候还可以怎么做呢?</p>
+<p>海量的用户秒杀请求，本质上是一个排序，先到先得。但是如此之多的请求，注定了有些人是抢不到的，可以在进入上述伪代码 Dao 层之前增加一个计数器进行控制，比如有 50% 的流量将直接告诉其抢购失败，伪代码如下：</p>
+<p><img src="京东到家库存系统/96-1508945703837.jpg" alt="logo"></p>
+<p>另外同一个用户，不允许多次抢购同一件商品，我们又该如何做呢?</p>
+<p><img src="京东到家库存系统/107-1508945703837.jpg" alt="logo"></p>
+<p>如果同一个用户拥有不同的帐号，来抢购同一件商品，上面的策略就失效了。一些公司在发展早期几乎是没有限制的，很容易就可以注册很多个账号。也即是网络所谓的“僵尸账号”，数量庞大，如果我们使用几万个“僵尸号”混进去抢购，这样就可以大大提升我们中奖的概率，那我们如何应对呢？</p>
+<p><img src="京东到家库存系统/148-1508945703837.jpg" alt="logo"></p>
+<h1 id="库存系统的核心表结构设计"><a href="#库存系统的核心表结构设计" class="headerlink" title="库存系统的核心表结构设计"></a>库存系统的核心表结构设计</h1><p>下面列出了库存系统的核心表结构，提供出来供大家在工作中能够有所参考。</p>
+<p><img src="京东到家库存系统/59-1508945703838.jpg" alt="logo"></p>
+<p>库存主表，命名规则：stock_center_00~99 库存主表</p>
+<p><img src="京东到家库存系统/510-1508945703836.jpg" alt="logo"></p>
+<p>库存流水表，命名规则：stock_center_flow_00~99 库存流水表</p>
+<p><img src="京东到家库存系统/711-1508945703837.jpg" alt="logo"></p>
+<p>库存批量操作日志表，命名规则：batch_upload_log 库存批量操作日志表</p>
+</div><script type="text/javascript" src="/js/share.js?v=0.0.1" async></script><a data-url="http://blog.wenzy.top/2017/10/26/京东到家库存系统/" data-id="cjhnh17q4001o2ico1hdv1vef" class="article-share-link">分享到</a><div class="tags"><a href="/tags/电商-库存/">电商 库存</a></div><div class="post-nav"><a href="/2017/10/31/mysql-explain详解/" class="pre">mysql explain详解</a><a href="/2017/10/21/简单介绍Java中Comparable和Comparator/" class="next">简单介绍Java中Comparable和Comparator</a></div><div data-thread-key="2017/10/26/京东到家库存系统/" data-title="京东到家库存系统" data-url="http://blog.wenzy.top/2017/10/26/京东到家库存系统/" data-author-key="1" class="ds-thread"></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form action="//www.baidu.com/baidu" method="get" accept-charset="utf-8" target="_blank" class="search-form"><input type="search" name="word" maxlength="20" placeholder="Search"/><input type="hidden" name="si" value="http://blog.wenzy.top"/><input name="tn" type="hidden" value="bds"/><input name="cl" type="hidden" value="3"/><input name="ct" type="hidden" value="2097152"/><input name="s" type="hidden" value="on"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/">数据库</a><span class="category-list-count">1</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/mysql/" style="font-size: 15px;">mysql</a> <a href="/tags/lua/" style="font-size: 15px;">lua</a> <a href="/tags/ElasticSearch/" style="font-size: 15px;">ElasticSearch</a> <a href="/tags/IntelliIdea-mybatis/" style="font-size: 15px;">IntelliIdea mybatis</a> <a href="/tags/java基础-equals-hashcode/" style="font-size: 15px;">java基础 equals hashcode</a> <a href="/tags/JVM/" style="font-size: 15px;">JVM</a> <a href="/tags/hexo/" style="font-size: 15px;">hexo</a> <a href="/tags/github/" style="font-size: 15px;">github</a> <a href="/tags/博客/" style="font-size: 15px;">博客</a> <a href="/tags/java8-lambda/" style="font-size: 15px;">java8 lambda</a> <a href="/tags/代码规范/" style="font-size: 15px;">代码规范</a> <a href="/tags/spring-data-redis-lua/" style="font-size: 15px;">spring-data-redis lua</a> <a href="/tags/java8-lambda-stream/" style="font-size: 15px;">java8 lambda stream</a> <a href="/tags/java-命令/" style="font-size: 15px;">java 命令</a> <a href="/tags/数据库/" style="font-size: 15px;">数据库</a> <a href="/tags/ElasticSearch-cluster-搜索/" style="font-size: 15px;">ElasticSearch cluster 搜索</a> <a href="/tags/主从/" style="font-size: 15px;">主从</a> <a href="/tags/数据库-oracle-mybatis/" style="font-size: 15px;">数据库 oracle mybatis</a> <a href="/tags/mysql-性能/" style="font-size: 15px;">mysql 性能</a> <a href="/tags/redis-集群/" style="font-size: 15px;">redis 集群</a> <a href="/tags/linux-scp/" style="font-size: 15px;">linux scp</a> <a href="/tags/spring-boot/" style="font-size: 15px;">spring boot</a> <a href="/tags/spring-cloud-zuul/" style="font-size: 15px;">spring-cloud zuul</a> <a href="/tags/springcloud-eureka/" style="font-size: 15px;">springcloud eureka</a> <a href="/tags/spring-事务/" style="font-size: 15px;">spring 事务</a> <a href="/tags/数据库-事务/" style="font-size: 15px;">数据库 事务</a> <a href="/tags/mysql-读写分离/" style="font-size: 15px;">mysql 读写分离</a> <a href="/tags/电商-库存/" style="font-size: 15px;">电商 库存</a> <a href="/tags/微服务/" style="font-size: 15px;">微服务</a> <a href="/tags/java基础-comparable-comparator/" style="font-size: 15px;">java基础 comparable comparator</a> <a href="/tags/面试/" style="font-size: 15px;">面试</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最新文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/10/31/mysql-explain详解/">mysql explain详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/26/京东到家库存系统/">京东到家库存系统</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/21/简单介绍Java中Comparable和Comparator/">简单介绍Java中Comparable和Comparator</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/21/Java中的equals-和hashcode-之间关系/">Java中的equals()和hashcode()之间关系</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/20/java命令学习/">java命令学习</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/20/JVM实用参数/">JVM实用参数</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/25/面试总结/">面试总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/19/几种常见的微服务编排模式/">几种常见的微服务编排模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/12/checkstyle标准checks/">checkstyle标准checks</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/24/spring-cloud-zuul的一些记录/">spring-cloud-zuul的一些记录</a></li></ul></div><div class="widget"><div class="comments-title"><i class="fa fa-comment-o"> 最近评论</i></div><div data-num-items="5" data-show-avatars="0" data-show-time="1" data-show-admin="0" data-excerpt-length="32" data-show-title="1" class="ds-recent-comments"></div></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">© <a href="/." rel="nofollow">wenzy.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a id="rocket" href="#top" class="show"></a><script type="text/javascript" src="/js/totop.js?v=0.0.1" async></script><script>var duoshuoQuery = {short_name:'wenzy'};
+(function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?fac8b898e6b30b65932e452ab3fce342";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+  })();
+</script><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.1"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.1"></script></div></body></html>

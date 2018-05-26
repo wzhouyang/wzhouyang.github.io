@@ -1,0 +1,118 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>mysql explain详解 | wenzy</title><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/5.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.2/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.2/grids-responsive-min.css"><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.1"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">mysql explain详解</h1><a id="logo" href="/.">wenzy</a><p class="description"></p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">mysql explain详解</h1><div class="post-meta">Oct 31, 2017<script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> Hits</span></span></div><a data-thread-key="2017/10/31/mysql-explain详解/" href="/2017/10/31/mysql-explain详解/#comments" class="ds-thread-count"></a><div class="post-content"><h3 id="mysql-explain-输出格式："><a href="#mysql-explain-输出格式：" class="headerlink" title="mysql explain 输出格式："></a>mysql explain 输出格式：</h3><table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Json_name</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>select_id</td>
+<td>select的标识</td>
+</tr>
+<tr>
+<td>select_type</td>
+<td>NONE</td>
+<td>查询类型</td>
+</tr>
+<tr>
+<td>table</td>
+<td>table_name</td>
+<td>表名</td>
+</tr>
+<tr>
+<td>partitions</td>
+<td>partitions</td>
+<td>匹配到的分区</td>
+</tr>
+<tr>
+<td>type</td>
+<td>access_type</td>
+<td>连接类型</td>
+</tr>
+<tr>
+<td>possible_keys</td>
+<td>possible_keys</td>
+<td>可能选择的索引</td>
+</tr>
+<tr>
+<td>key</td>
+<td>key</td>
+<td>实际选择的索引</td>
+</tr>
+<tr>
+<td>key_len</td>
+<td>key_length</td>
+<td>索引的长度</td>
+</tr>
+<tr>
+<td>ref</td>
+<td>ref</td>
+<td>使用哪个列或常数与key一起从表中选择行。</td>
+</tr>
+<tr>
+<td>rows</td>
+<td>rows</td>
+<td>估计要检索的行</td>
+</tr>
+<tr>
+<td>filtered</td>
+<td>filtered</td>
+<td>按表条件过滤的行百分比</td>
+</tr>
+<tr>
+<td>Extra</td>
+<td>NONE</td>
+<td>附加信息</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p>id (JSON name: select_id)</p>
+<p>  SELECT识别符。这是SELECT查询序列号。</p>
+</li>
+<li><p>select_type (JSON name: NONE)</p>
+<p>  select类型<br>  |select_type value|Json name|含义|<br>  |—————–|———|—-|<br>  |SIMPLE|None|简单的select，没有使用union和子查询|<br>  PRIMARY|None|最外面的select,在有子查询的语句中，最外面的select查询就是primary|<br>  |UNION|None|union语句的第二个或者说是后面那一个|<br>  |DEPENDENT UNION|dependent (true)|UNION中的第二个或后面的SELECT语句，取决于外层的查询|<br>  |UNION RESULT|union_result|UNION的结果|<br>  |SUBQUERY|None|子查询中的第一个select|<br>  |DEPENDENT SUBQUERY|dependent (true)|子查询中的第一个select，取决于外层查询|<br>  |DERIVED|    None|派生表select(from语句子查询)|<br>  |MATERIALIZED|materialized_from_subquery|Materialized subquery|<br>  |UNCACHEABLE SUBQUERY|cacheable (false)|查询结果不能缓存的子查询，必须对每个外部查询重新评估|<br>  |UNCACHEABLE UNION|cacheable (false)|union语句的第二个或者最后一个不能被缓存的查询|</p>
+</li>
+<li><p>table (JSON name: table_name)</p>
+<p>  输出行所用到的表。</p>
+<ul>
+<li>\<union*m*,*n*>: 输出行所用到的id为m和n的union结果</union*m*,*n*></li>
+<li>\<derived*n*>: 派生表，n指id</derived*n*></li>
+<li>\<subquery*n*>: 子查询，n指id</subquery*n*></li>
+</ul>
+</li>
+<li><p>partitions (JSON name: partitions)</p>
+<p>  查询记录匹配的分区</p>
+</li>
+<li><p>type (JSON name: access_type)</p>
+<p>  连接类型。</p>
+<ul>
+<li><p>system</p>
+<p>表仅有一行，这是const类型的特列，平时不会出现，这个也可以忽略不计</p>
+</li>
+<li><p>const</p>
+<p>表最多有一个匹配行,const用于比较primary key 或者unique索引。因为只匹配一行数据，所以很快.记住一定是用到primary key 或者unique</p>
+</li>
+</ul>
+</li>
+</ul>
+</div><script type="text/javascript" src="/js/share.js?v=0.0.1" async></script><a data-url="http://blog.wenzy.top/2017/10/31/mysql-explain详解/" data-id="cjhnh17pm00152ico6y7odgne" class="article-share-link">分享到</a><div class="tags"><a href="/tags/mysql-性能/">mysql 性能</a></div><div class="post-nav"><a href="/2017/10/26/京东到家库存系统/" class="next">京东到家库存系统</a></div><div data-thread-key="2017/10/31/mysql-explain详解/" data-title="mysql explain详解" data-url="http://blog.wenzy.top/2017/10/31/mysql-explain详解/" data-author-key="1" class="ds-thread"></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form action="//www.baidu.com/baidu" method="get" accept-charset="utf-8" target="_blank" class="search-form"><input type="search" name="word" maxlength="20" placeholder="Search"/><input type="hidden" name="si" value="http://blog.wenzy.top"/><input name="tn" type="hidden" value="bds"/><input name="cl" type="hidden" value="3"/><input name="ct" type="hidden" value="2097152"/><input name="s" type="hidden" value="on"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/">数据库</a><span class="category-list-count">1</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/mysql/" style="font-size: 15px;">mysql</a> <a href="/tags/lua/" style="font-size: 15px;">lua</a> <a href="/tags/ElasticSearch/" style="font-size: 15px;">ElasticSearch</a> <a href="/tags/IntelliIdea-mybatis/" style="font-size: 15px;">IntelliIdea mybatis</a> <a href="/tags/java基础-equals-hashcode/" style="font-size: 15px;">java基础 equals hashcode</a> <a href="/tags/JVM/" style="font-size: 15px;">JVM</a> <a href="/tags/hexo/" style="font-size: 15px;">hexo</a> <a href="/tags/github/" style="font-size: 15px;">github</a> <a href="/tags/博客/" style="font-size: 15px;">博客</a> <a href="/tags/java8-lambda/" style="font-size: 15px;">java8 lambda</a> <a href="/tags/代码规范/" style="font-size: 15px;">代码规范</a> <a href="/tags/spring-data-redis-lua/" style="font-size: 15px;">spring-data-redis lua</a> <a href="/tags/java8-lambda-stream/" style="font-size: 15px;">java8 lambda stream</a> <a href="/tags/java-命令/" style="font-size: 15px;">java 命令</a> <a href="/tags/数据库/" style="font-size: 15px;">数据库</a> <a href="/tags/ElasticSearch-cluster-搜索/" style="font-size: 15px;">ElasticSearch cluster 搜索</a> <a href="/tags/主从/" style="font-size: 15px;">主从</a> <a href="/tags/数据库-oracle-mybatis/" style="font-size: 15px;">数据库 oracle mybatis</a> <a href="/tags/mysql-性能/" style="font-size: 15px;">mysql 性能</a> <a href="/tags/redis-集群/" style="font-size: 15px;">redis 集群</a> <a href="/tags/linux-scp/" style="font-size: 15px;">linux scp</a> <a href="/tags/spring-boot/" style="font-size: 15px;">spring boot</a> <a href="/tags/spring-cloud-zuul/" style="font-size: 15px;">spring-cloud zuul</a> <a href="/tags/springcloud-eureka/" style="font-size: 15px;">springcloud eureka</a> <a href="/tags/spring-事务/" style="font-size: 15px;">spring 事务</a> <a href="/tags/数据库-事务/" style="font-size: 15px;">数据库 事务</a> <a href="/tags/mysql-读写分离/" style="font-size: 15px;">mysql 读写分离</a> <a href="/tags/电商-库存/" style="font-size: 15px;">电商 库存</a> <a href="/tags/微服务/" style="font-size: 15px;">微服务</a> <a href="/tags/java基础-comparable-comparator/" style="font-size: 15px;">java基础 comparable comparator</a> <a href="/tags/面试/" style="font-size: 15px;">面试</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最新文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/10/31/mysql-explain详解/">mysql explain详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/26/京东到家库存系统/">京东到家库存系统</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/21/简单介绍Java中Comparable和Comparator/">简单介绍Java中Comparable和Comparator</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/21/Java中的equals-和hashcode-之间关系/">Java中的equals()和hashcode()之间关系</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/20/java命令学习/">java命令学习</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/20/JVM实用参数/">JVM实用参数</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/25/面试总结/">面试总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/19/几种常见的微服务编排模式/">几种常见的微服务编排模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/12/checkstyle标准checks/">checkstyle标准checks</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/24/spring-cloud-zuul的一些记录/">spring-cloud-zuul的一些记录</a></li></ul></div><div class="widget"><div class="comments-title"><i class="fa fa-comment-o"> 最近评论</i></div><div data-num-items="5" data-show-avatars="0" data-show-time="1" data-show-admin="0" data-excerpt-length="32" data-show-title="1" class="ds-recent-comments"></div></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">© <a href="/." rel="nofollow">wenzy.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a id="rocket" href="#top" class="show"></a><script type="text/javascript" src="/js/totop.js?v=0.0.1" async></script><script>var duoshuoQuery = {short_name:'wenzy'};
+(function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?fac8b898e6b30b65932e452ab3fce342";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+  })();
+</script><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.1"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.1"></script></div></body></html>

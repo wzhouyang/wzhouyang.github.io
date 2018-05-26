@@ -1,0 +1,924 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>checkstyle标准checks | wenzy</title><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/5.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.2/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.2/grids-responsive-min.css"><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.1"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">checkstyle标准checks</h1><a id="logo" href="/.">wenzy</a><p class="description"></p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">checkstyle标准checks</h1><div class="post-meta">Sep 12, 2017<script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> Hits</span></span></div><a data-thread-key="2017/09/12/checkstyle标准checks/" href="/2017/09/12/checkstyle标准checks/#comments" class="ds-thread-count"></a><div class="post-content"><p>标准checks<br>=</p>
+<p>所有checkstyle 8.2支持的标准checks</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">check</th>
+<th style="text-align:left">备注</th>
+<th style="text-align:center">链接</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">AbbreviationAsWordInName</td>
+<td style="text-align:left">验证标示符的缩略词(大写字母)长度，可强制驼峰标识</td>
+<td style="text-align:center"><a href="#1-AbbreviationAsWordInName">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">AbstractClassName</td>
+<td style="text-align:left">确保抽象类的名称符合特定的规则</td>
+<td style="text-align:center"><a href="#2-AbstractClassName">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">AnnotationLocation</td>
+<td style="text-align:left">检查注解的位置</td>
+<td style="text-align:center"><a href="#3-AnnotationLocation">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">AnnotationOnSameLine</td>
+<td style="text-align:left">检查注解和目标对象在同一行</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_annotation.html#AnnotationOnSameLine" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">AnnotationUseStyle</td>
+<td style="text-align:left">This check controls the style with the usage of annotations.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_annotation.html#AnnotationUseStyle" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">AnonInnerLength</td>
+<td style="text-align:left">检查内部类的长度</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_sizes.html#AnonInnerLength" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">ArrayTrailingComma</td>
+<td style="text-align:left">Checks if array initialization contains optional trailing comma.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_coding.html#ArrayTrailingComma" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">ArrayTypeStyle</td>
+<td style="text-align:left">Checks the style of array type definitions.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_misc.html#ArrayTypeStyle" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">AtclauseOrder</td>
+<td style="text-align:left">检查Javadoc的顺序</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_javadoc.html#AtclauseOrder" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">AvoidEscapedUnicodeCharacters</td>
+<td style="text-align:left">限制使用unicode转义字符</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_misc.html#AvoidEscapedUnicodeCharacters" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">AvoidInlineConditionals</td>
+<td style="text-align:left">避免行内条件表达式</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_coding.html#AvoidInlineConditionals" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">AvoidNestedBlocks</td>
+<td style="text-align:left">避免嵌套语句块</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_blocks.html#AvoidNestedBlocks" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">AvoidStarImport</td>
+<td style="text-align:left">避免*导入包</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_imports.html#AvoidStarImport" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">AvoidStaticImport</td>
+<td style="text-align:left">避免静态导入</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_imports.html#AvoidStaticImport" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">BooleanExpressionComplexity</td>
+<td style="text-align:left">约束嵌套布尔操作深度</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_metrics.html#BooleanExpressionComplexity" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">CatchParameterName</td>
+<td style="text-align:left">catch异常的名字检查</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_naming.html#CatchParameterName" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">ClassDataAbstractionCoupling</td>
+<td style="text-align:left">This metric measures the number of instantiations of other classes within the given class.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_metrics.html#ClassDataAbstractionCoupling" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">ClassFanOutComplexity</td>
+<td style="text-align:left">The number of other classes a given class relies on.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_metrics.html#ClassFanOutComplexity" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">ClassTypeParameterName</td>
+<td style="text-align:left">Checks that class type parameter names conform to a format specified by the format property.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_naming.html#ClassTypeParameterName" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">CommentsIndentation</td>
+<td style="text-align:left">控制注释缩进</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_misc.html#CommentsIndentation" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">ConstantName</td>
+<td style="text-align:left">检查常量命名</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_naming.html#ConstantName" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">CovariantEquals</td>
+<td style="text-align:left">检查类是否定义了一个协变的equals方法</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_coding.html#CovariantEquals" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">CustomImportOrder</td>
+<td style="text-align:left">自定义的导入包顺序</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_imports.html#CustomImportOrder" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">CyclomaticComplexity</td>
+<td style="text-align:left">检查复杂度</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_metrics.html#CyclomaticComplexity" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">DeclarationOrder</td>
+<td style="text-align:left">检查类或者接口中成员声明顺序</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_metrics.html#ClassFanOutComplexity" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">DefaultComesLast</td>
+<td style="text-align:left">检查switch中的default是否在所有的case后面</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_coding.html#DefaultComesLast" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">DescendantToken</td>
+<td style="text-align:left">Checks for restricted tokens beneath other tokens.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_misc.html#DescendantToken" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">DesignForExtension</td>
+<td style="text-align:left">Checks that classes are designed for inheritance.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_design.html#DesignForExtension" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">EmptyBlock</td>
+<td style="text-align:left">检查空代码块，但是并不验证连续的空代码块</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_blocks.html#EmptyBlock" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">EmptyCatchBlock</td>
+<td style="text-align:left">检查空catch块</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_blocks.html#EmptyCatchBlock" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">EmptyForInitializerPad</td>
+<td style="text-align:left"></td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_whitespace.html#EmptyForInitializerPad" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">EmptyForIteratorPad</td>
+<td style="text-align:left"></td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_whitespace.html#EmptyForIteratorPad" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">EmptyLineSeparator</td>
+<td style="text-align:left">空行分割检查</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_whitespace.html#EmptyLineSeparator" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">EmptyStatement</td>
+<td style="text-align:left">空表达式检查</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_coding.html#EmptyStatement" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">EqualsAvoidNull</td>
+<td style="text-align:left">检查equals方法避免空指针</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_coding.html#EqualsAvoidNull" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">EqualsHashCode</td>
+<td style="text-align:left">检查是否在重载了equals()的同时是否重载了hashCode()</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_coding.html#EqualsHashCode" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">ExecutableStatementCount</td>
+<td style="text-align:left">限制可执行表达式的数量</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_sizes.html#ExecutableStatementCount" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">ExplicitInitialization</td>
+<td style="text-align:left"></td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_coding.html#ExplicitInitialization" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">FileLength</td>
+<td style="text-align:left">Checks for long source files.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_sizes.html#FileLength" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">FileTabCharacter</td>
+<td style="text-align:left">Checks to see if a file contains a tab character.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_whitespace.html#FileTabCharacter" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">FinalClass</td>
+<td style="text-align:left">Checks that class which has only private constructors is declared as final.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_design.html#FinalClass" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">FinalLocalVariable</td>
+<td style="text-align:left">Ensures that local variables that never get their values changed, must be declared final.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_coding.html#FinalLocalVariable" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">FinalParameters</td>
+<td style="text-align:left">Check that method/constructor/catch/foreach parameters are final.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_misc.html#FinalParameters" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">GenericWhitespace</td>
+<td style="text-align:left">Checks that the whitespace around the Generic tokens &lt; and &gt; are correct to the typical convention.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_whitespace.html#GenericWhitespace" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">Header</td>
+<td style="text-align:left">Checks the header of the source against a fixed header file.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_header.html#Header" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">HiddenField</td>
+<td style="text-align:left">Checks that a local variable or a parameter does not shadow a field that is defined in the same class.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_coding.html#HiddenField" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">HideUtilityClassConstructor</td>
+<td style="text-align:left">Make sure that utility classes (classes that contain only static methods) do not have a public constructor.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_design.html#HideUtilityClassConstructor" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">IllegalCatch</td>
+<td style="text-align:left">Catching java.lang.Exception, java.lang.Error or java.lang.RuntimeException is almost never acceptable.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_coding.html#IllegalCatch" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">IllegalImport</td>
+<td style="text-align:left">Checks for imports from a set of illegal packages.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_imports.html#IllegalImport" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">IllegalInstantiation</td>
+<td style="text-align:left">Checks for illegal instantiations where a factory method is preferred.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_coding.html#IllegalInstantiation" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">IllegalThrows</td>
+<td style="text-align:left">Throwing java.lang.Error or java.lang.RuntimeException is almost never acceptable.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_coding.html#IllegalThrows" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">IllegalToken</td>
+<td style="text-align:left">Checks for illegal tokens.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_coding.html#IllegalToken" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">IllegalTokenText</td>
+<td style="text-align:left">Checks for illegal token text.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_coding.html#IllegalTokenText" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">IllegalType</td>
+<td style="text-align:left">Checks that particular class are never used as types in variable declarations, return values or parameters.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_coding.html#IllegalType" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">ImportControl</td>
+<td style="text-align:left">Check that controls what packages can be imported in each package.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_imports.html#ImportControl" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">ImportOrder</td>
+<td style="text-align:left">Ensures that groups of imports come in a specific order.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_imports.html#ImportOrder" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">Indentation</td>
+<td style="text-align:left">Checks correct indentation of Java Code.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_misc.html#Indentation" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">InnerAssignment</td>
+<td style="text-align:left">Checks for assignments in subexpressions, such as in String s = Integer.toString(i = 2);.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_coding.html#InnerAssignment" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">InnerTypeLast</td>
+<td style="text-align:left">Check nested (internal) classes/interfaces are declared at the bottom of the class after all method and field declarations.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_design.html#InnerTypeLast" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">InterfaceIsType</td>
+<td style="text-align:left">Implements Bloch, Effective Java, Item 17 - Use Interfaces only to define types.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_design.html#InterfaceIsType" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">InterfaceTypeParameterName</td>
+<td style="text-align:left">Checks that interface type parameter names conform to a format specified by the format property.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_naming.html#InterfaceTypeParameterName" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">JavadocMethod</td>
+<td style="text-align:left">Checks the Javadoc of a method or constructor.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_javadoc.html#JavadocMethod" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">JavadocPackage</td>
+<td style="text-align:left">Checks that all packages have a package documentation.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_javadoc.html#JavadocPackage" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">JavadocParagraph</td>
+<td style="text-align:left">Checks Javadoc paragraphs.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_javadoc.html#JavadocParagraph" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">JavadocStyle</td>
+<td style="text-align:left">Custom Checkstyle Check to validate Javadoc.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_javadoc.html#JavadocStyle" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">JavadocTagContinuationIndentation</td>
+<td style="text-align:left">Checks the indentation of the continuation lines in at-clauses.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_javadoc.html#JavadocTagContinuationIndentation" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">JavadocType</td>
+<td style="text-align:left">Checks the Javadoc of a type.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_javadoc.html#JavadocType" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">JavadocVariable</td>
+<td style="text-align:left">Checks that a variable has Javadoc comment.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_javadoc.html#JavadocVariable" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">JavaNCSS</td>
+<td style="text-align:left">This check calculates the Non Commenting Source Statements (NCSS) metric for Java source files and methods.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_metrics.html#JavaNCSS" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">LeftCurly</td>
+<td style="text-align:left">Checks the placement of left curly braces on types, methods and other blocks:</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_blocks.html#LeftCurly" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">LineLength</td>
+<td style="text-align:left">Checks for long lines.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_sizes.html#LineLength" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">LocalFinalVariableName</td>
+<td style="text-align:left">Checks that local final variable names conform to a format specified by the format property.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_naming.html#LocalFinalVariableName" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">LocalVariableName</td>
+<td style="text-align:left">Checks that local, non-final variable names conform to a format specified by the format property.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_naming.html#LocalVariableName" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">MagicNumber</td>
+<td style="text-align:left">Checks for magic numbers.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_coding.html#MagicNumber" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">MemberName</td>
+<td style="text-align:left">Checks that instance variable names conform to a format specified by the format property.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_naming.html#MemberName" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">MethodCount</td>
+<td style="text-align:left">Checks the number of methods declared in each type declaration by access modifier or total count.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_sizes.html#MethodCount" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">MethodLength</td>
+<td style="text-align:left">Checks for long methods.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_sizes.html#MethodLength" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">MethodName</td>
+<td style="text-align:left">Checks that method names conform to a format specified by the format property.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_naming.html#MethodName" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">MethodParamPad</td>
+<td style="text-align:left">Checks the padding between the identifier of a method definition, constructor definition, method call, or constructor invocation; and the left parenthesis of the parameter list.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_whitespace.html#MethodParamPad" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">MethodTypeParameterName</td>
+<td style="text-align:left">Checks that class type parameter names conform to a format specified by the format property.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_naming.html#MethodTypeParameterName" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">MissingCtor</td>
+<td style="text-align:left">Checks that classes (except abstract one) define a ctor and don’t rely on the default one.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_coding.html#MissingCtor" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">MissingDeprecated</td>
+<td style="text-align:left">This class is used to verify that both the java.lang.Deprecated annotation is present and the @deprecated Javadoc tag is present when either is present.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_annotation.html#MissingDeprecated" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">MissingOverride</td>
+<td style="text-align:left">This class is used to verify that the java.lang.Override annotation is present when the {@inheritDoc} javadoc tag is present.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_annotation.html#MissingOverride" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">MissingSwitchDefault</td>
+<td style="text-align:left">Checks that switch statement has “default” clause.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_coding.html#MissingSwitchDefault" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">ModifiedControlVariable</td>
+<td style="text-align:left">Check for ensuring that for loop control variables are not modified inside the for block.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_coding.html#ModifiedControlVariable" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">ModifierOrder</td>
+<td style="text-align:left">Checks that the order of modifiers conforms to the suggestions in the Java Language specification, sections 8.1.1, 8.3.1 and 8.4.3.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_modifier.html#ModifierOrder" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">MultipleStringLiterals</td>
+<td style="text-align:left">Checks for multiple occurrences of the same string literal within a single file.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_coding.html#MultipleStringLiterals" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">MultipleVariableDeclarations</td>
+<td style="text-align:left">Checks that each variable declaration is in its own statement and on its own line.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_coding.html#MultipleVariableDeclarations" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">MutableException</td>
+<td style="text-align:left">Ensures that exceptions (defined as any class name conforming to some regular expression) are immutable.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_design.html#MutableException" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">NeedBraces</td>
+<td style="text-align:left">Checks for braces around code blocks.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_blocks.html#NeedBraces" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">NestedForDepth</td>
+<td style="text-align:left">Restricts nested for blocks to a specified depth (default = 1).</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_coding.html#NestedForDepth" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">NestedIfDepth</td>
+<td style="text-align:left">Restricts nested if-else blocks to a specified depth (default = 1).</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_coding.html#NestedIfDepth" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">NestedTryDepth</td>
+<td style="text-align:left">Restricts nested try-catch-finally blocks to a specified depth (default = 1).</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_coding.html#NestedTryDepth" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">NewlineAtEndOfFile</td>
+<td style="text-align:left">Checks that there is a newline at the end of each file.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_misc.html#NewlineAtEndOfFile" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">NoClone</td>
+<td style="text-align:left">Checks that the clone method is not overridden from the Object class.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_coding.html#NoClone" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">NoFinalizer</td>
+<td style="text-align:left">Checks that no method having zero parameters is defined using the name finalize.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_coding.html#NoFinalizer" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">NoLineWrap</td>
+<td style="text-align:left">Checks that chosen statements are not line-wrapped.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_whitespace.html#NoLineWrap" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">NonEmptyAtclauseDescription</td>
+<td style="text-align:left">Checks that the at-clause tag is followed by description .</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_javadoc.html#NonEmptyAtclauseDescription" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">NoWhitespaceAfter</td>
+<td style="text-align:left">Checks that there is no whitespace after a token.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_whitespace.html#NoWhitespaceAfter" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">NoWhitespaceBefore</td>
+<td style="text-align:left">Checks that there is no whitespace before a token.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_whitespace.html#NoWhitespaceBefore" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">NPathComplexity</td>
+<td style="text-align:left">Checks the npath complexity against a specified limit (default = 200).</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_metrics.html#NPathComplexity" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">OneStatementPerLine</td>
+<td style="text-align:left">Checks that there is only one statement per line.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_coding.html#OneStatementPerLine" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">OneTopLevelClass</td>
+<td style="text-align:left">Checks that each top-level class, interfaces or enum resides in a source file of its own.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_design.html#OneTopLevelClass" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">OperatorWrap</td>
+<td style="text-align:left">Checks line wrapping for operators.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_whitespace.html#OperatorWrap" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">OuterTypeFilename</td>
+<td style="text-align:left">Checks that the outer type name and the file name match.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_misc.html#OuterTypeFilename" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">OuterTypeNumber</td>
+<td style="text-align:left">Checks for the number of defined types at the “outer” level.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_sizes.html#OuterTypeNumber" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">OverloadMethodsDeclarationOrder</td>
+<td style="text-align:left">Checks that overload methods are grouped together.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_coding.html#OverloadMethodsDeclarationOrder" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">PackageAnnotation</td>
+<td style="text-align:left">This check makes sure that all package annotations are in the package-info.java file.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_annotation.html#PackageAnnotation" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">PackageDeclaration</td>
+<td style="text-align:left">Ensures there is a package declaration and (optionally) in the correct directory.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_coding.html#PackageDeclaration" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">PackageName</td>
+<td style="text-align:left">Checks that package names conform to a format specified by the format property.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_naming.html#PackageName" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">ParameterAssignment</td>
+<td style="text-align:left">Disallow assignment of parameters.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_coding.html#ParameterAssignment" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">ParameterName</td>
+<td style="text-align:left">Checks that parameter names conform to a format specified by the format property.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_naming.html#ParameterName" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">ParameterNumber</td>
+<td style="text-align:left">Checks the number of parameters that a method or constructor has.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_sizes.html#ParameterNumber" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">ParenPad</td>
+<td style="text-align:left">Checks the padding of parentheses; that is whether a space is required after a left parenthesis and before a right parenthesis, or such spaces are forbidden, with the exception that it does not check for padding of the right parenthesis at an empty for iterator.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_whitespace.html#ParenPad" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">RedundantImport</td>
+<td style="text-align:left">Checks for imports that are redundant.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_imports.html#RedundantImport" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">RedundantModifier</td>
+<td style="text-align:left">Checks for redundant modifiers in interface and annotation definitions, final modifier on methods of final classes, inner interface declarations that are declared as static, non public class constructors and enum constructors, nested enum definitions that are declared as static.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_modifier.html#RedundantModifier" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">Regexp</td>
+<td style="text-align:left">A check that makes sure that a specified pattern exists (or not) in the file.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_regexp.html#Regexp" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">RegexpHeader</td>
+<td style="text-align:left">Checks the header of the source against a header file that contains a</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_header.html#RegexpHeader" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">RegexpMultiline</td>
+<td style="text-align:left">Implementation of a check that looks that matches across multiple lines in any file type.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_regexp.html#RegexpMultiline" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">RegexpOnFilename</td>
+<td style="text-align:left">Implementation of a check that matches based on file and/or folder path.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_regexp.html#RegexpOnFilename" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">RegexpSingleline</td>
+<td style="text-align:left">Implementation of a check that looks for a single line in any file type.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_regexp.html#RegexpSingleline" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">RegexpSinglelineJava</td>
+<td style="text-align:left">Implementation of a check that looks for a single line in Java files.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_regexp.html#RegexpSinglelineJava" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">RequireThis</td>
+<td style="text-align:left">Checks that code doesn’t rely on the “this” default.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_coding.html#RequireThis" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">ReturnCount</td>
+<td style="text-align:left">Restricts return statements to a specified count (default = 2).</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_coding.html#ReturnCount" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">RightCurly</td>
+<td style="text-align:left">Checks the placement of right curly braces.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_blocks.html#RightCurly" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">SeparatorWrap</td>
+<td style="text-align:left">Checks line wrapping with separators.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_whitespace.html#SeparatorWrap" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">SimplifyBooleanExpression</td>
+<td style="text-align:left">Checks for overly complicated boolean expressions.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_coding.html#SimplifyBooleanExpression" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">SimplifyBooleanReturn</td>
+<td style="text-align:left">Checks for overly complicated boolean return statements.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_coding.html#SimplifyBooleanReturn" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">SingleLineJavadoc</td>
+<td style="text-align:left">Checks that a JavaDoc block which can fit on a single line and doesn’t contain at-clauses</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_javadoc.html#SingleLineJavadoc" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">SingleSpaceSeparator</td>
+<td style="text-align:left">Checks that non-whitespace characters are separated by no more than one whitespace.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_whitespace.html#SingleSpaceSeparator" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">StaticVariableName</td>
+<td style="text-align:left">Checks that static, non-final variable names conform to a format specified by the format property.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_naming.html#StaticVariableName" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">StringLiteralEquality</td>
+<td style="text-align:left">Checks that string literals are not used with == or !=.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_coding.html#StringLiteralEquality" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">SummaryJavadoc</td>
+<td style="text-align:left">Checks that Javadoc summary sentence does not contain phrases that are not recommended to use.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_javadoc.html#SummaryJavadoc" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">SuperClone</td>
+<td style="text-align:left">Checks that an overriding clone() method invokes super.clone().</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_coding.html#SuperClone" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">SuperFinalize</td>
+<td style="text-align:left">Checks that an overriding finalize() method invokes super.finalize().</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_coding.html#SuperFinalize" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">SuppressWarnings</td>
+<td style="text-align:left">This check allows you to specify what warnings that</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_annotation.html#SuppressWarnings" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">ThrowsCount</td>
+<td style="text-align:left">Restricts throws statements to a specified count (default = 4).</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_design.html#ThrowsCount" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">TodoComment</td>
+<td style="text-align:left">A check for TODO comments.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_misc.html#TodoComment" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">TrailingComment</td>
+<td style="text-align:left">The check to ensure that requires that comments be the only thing on a line.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_misc.html#TrailingComment" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">Translation</td>
+<td style="text-align:left">The TranslationCheck class helps to ensure the correct translation of code by checking property files for consistency regarding their keys.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_misc.html#Translation" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">TypecastParenPad</td>
+<td style="text-align:left">Checks the padding of parentheses for typecasts.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_whitespace.html#TypecastParenPad" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">TypeName</td>
+<td style="text-align:left">Checks that type names conform to a format specified by the format property.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_naming.html#TypeName" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">UncommentedMain</td>
+<td style="text-align:left">Detects uncommented main methods.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_misc.html#UncommentedMain" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">UniqueProperties</td>
+<td style="text-align:left">Detects duplicated keys in properties files.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_misc.html#UniqueProperties" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">UnnecessaryParentheses</td>
+<td style="text-align:left">Checks if unnecessary parentheses are used in a statement or expression.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_coding.html#UnnecessaryParentheses" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">UnusedImports</td>
+<td style="text-align:left">Checks for unused import statements.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_imports.html#UnusedImports" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">UpperEll</td>
+<td style="text-align:left">Checks that long constants are defined with an upper ell.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_misc.html#UpperEll" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">VariableDeclarationUsageDistance</td>
+<td style="text-align:left">Checks the distance between declaration of variable and its first usage.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_coding.html#VariableDeclarationUsageDistance" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">VisibilityModifier</td>
+<td style="text-align:left">Checks visibility of class members.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_design.html#VisibilityModifier" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">WhitespaceAfter</td>
+<td style="text-align:left">Checks that a token is followed by whitespace, with the exception that it does not check for whitespace after the semicolon of an empty for iterator.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_whitespace.html#WhitespaceAfter" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">WhitespaceAround</td>
+<td style="text-align:left">Checks that a token is surrounded by whitespace.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_whitespace.html#WhitespaceAround" target="_blank" rel="external">详情</a></td>
+</tr>
+<tr>
+<td style="text-align:left">WriteTag</td>
+<td style="text-align:left">Outputs a JavaDoc tag as information.</td>
+<td style="text-align:center"><a href="http://checkstyle.sourceforge.net/config_javadoc.html#WriteTag" target="_blank" rel="external">详情</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="1-AbbreviationAsWordInName"><a href="#1-AbbreviationAsWordInName" class="headerlink" title="1.AbbreviationAsWordInName"></a>1.AbbreviationAsWordInName</h2><h3 id="1-1-Properties"><a href="#1-1-Properties" class="headerlink" title="1.1 Properties"></a>1.1 Properties</h3><table>
+<thead>
+<tr>
+<th style="text-align:left">名称</th>
+<th style="text-align:left">描述</th>
+<th style="text-align:left">类型</th>
+<th style="text-align:left">默认值</th>
+<th>since</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">allowedAbbreviationLength</td>
+<td style="text-align:left">标识目标标示符（类，接口，变量，方法名…）连续大写字母的个数</td>
+<td style="text-align:left">Integer</td>
+<td style="text-align:left">3</td>
+<td>5.8</td>
+</tr>
+<tr>
+<td style="text-align:left">allowedAbbreviations</td>
+<td style="text-align:left">列出哪些缩略词跳过检查，使用逗号分隔，不能使用空格</td>
+<td style="text-align:left">String Set</td>
+<td style="text-align:left">null</td>
+<td>5.8</td>
+</tr>
+<tr>
+<td style="text-align:left">ignoreFinal</td>
+<td style="text-align:left">是否跳过final修饰的变量</td>
+<td style="text-align:left">Boolean</td>
+<td style="text-align:left">true</td>
+<td>5.8</td>
+</tr>
+<tr>
+<td style="text-align:left">ignoreStatic</td>
+<td style="text-align:left">是否跳过static修饰的变量</td>
+<td style="text-align:left">Boolean</td>
+<td style="text-align:left">true</td>
+<td>5.8</td>
+</tr>
+<tr>
+<td style="text-align:left">ignoreOverriddenMethods</td>
+<td style="text-align:left">是否跳过@Override注解的方法</td>
+<td style="text-align:left">true</td>
+<td style="text-align:left">5.8</td>
+</tr>
+<tr>
+<td style="text-align:left">tokens</td>
+<td style="text-align:left">tokens to check</td>
+<td style="text-align:left"><a href="#1-1-1-token类型">1.1.1 token类型</a></td>
+<td style="text-align:left"><a href="#1-1-2-token默认值">1.1.2 token默认值</a></td>
+<td>5.8</td>
+</tr>
+</tbody>
+</table>
+<h4 id="1-1-1-token类型"><a href="#1-1-1-token类型" class="headerlink" title="1.1.1 token类型"></a>1.1.1 token类型</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">CLASS_DEF,</div><div class="line">INTERFACE_DEF, </div><div class="line">ENUM_DEF, </div><div class="line">ANNOTATION_DEF, </div><div class="line">ANNOTATION_FIELD_DEF, </div><div class="line">PARAMETER_DEF, </div><div class="line">VARIABLE_DEF, </div><div class="line">METHOD_DEF, </div><div class="line">ENUM_CONSTANT_DEF.</div></pre></td></tr></table></figure>
+<h3 id="1-1-2-token默认值"><a href="#1-1-2-token默认值" class="headerlink" title="1.1.2 token默认值"></a>1.1.2 token默认值</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">CLASS_DEF, </div><div class="line">INTERFACE_DEF, </div><div class="line">ENUM_DEF, </div><div class="line">ANNOTATION_DEF, </div><div class="line">ANNOTATION_FIELD_DEF, </div><div class="line">PARAMETER_DEF, </div><div class="line">VARIABLE_DEF, </div><div class="line">METHOD_DEF.</div></pre></td></tr></table></figure>
+<h3 id="1-2-示例"><a href="#1-2-示例" class="headerlink" title="1.2 示例"></a>1.2 示例</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">module</span> <span class="attr">name</span>=<span class="string">"AbbreviationAsWordInName"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"tokens"</span> <span class="attr">value</span>=<span class="string">"VARIABLE_DEF,CLASS_DEF"</span>/&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"ignoreStatic"</span> <span class="attr">value</span>=<span class="string">"false"</span>/&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"allowedAbbreviationLength"</span> <span class="attr">value</span>=<span class="string">"1"</span>/&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"allowedAbbreviations"</span> <span class="attr">value</span>=<span class="string">"XML,URL"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">module</span>&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="2-AbstractClassName"><a href="#2-AbstractClassName" class="headerlink" title="2.AbstractClassName"></a>2.AbstractClassName</h2><h3 id="2-1-Properties"><a href="#2-1-Properties" class="headerlink" title="2.1 Properties"></a>2.1 Properties</h3><table>
+<thead>
+<tr>
+<th style="text-align:left">名称</th>
+<th style="text-align:left">描述</th>
+<th style="text-align:left">类型</th>
+<th style="text-align:left">默认值</th>
+<th>since</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">format</td>
+<td style="text-align:left">指定有效的表达式</td>
+<td style="text-align:left">Regular Expression</td>
+<td style="text-align:left">“^Abstract.+$”</td>
+<td>3.2</td>
+</tr>
+<tr>
+<td style="text-align:left">ignoreModifier</td>
+<td style="text-align:left">控制在匹配类名时候是否忽略 abstract 修饰符</td>
+<td style="text-align:left">Boolean</td>
+<td style="text-align:left">false</td>
+<td>3.2</td>
+</tr>
+<tr>
+<td style="text-align:left">ignoreName</td>
+<td style="text-align:left">是否忽略类名。实际用于检查没有abstract的类名</td>
+<td style="text-align:left">Boolean</td>
+<td style="text-align:left">false</td>
+<td>3.2</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3-AnnotationLocation"><a href="#3-AnnotationLocation" class="headerlink" title="3.AnnotationLocation"></a>3.AnnotationLocation</h2><p>检查注解的位置。默认情况下，强制要求注解紧跟注释模块并在目标对象前，独占一行。</p>
+<h3 id="3-1-Properties"><a href="#3-1-Properties" class="headerlink" title="3.1 Properties"></a>3.1 Properties</h3><table>
+<thead>
+<tr>
+<th style="text-align:left">名称</th>
+<th style="text-align:left">描述</th>
+<th style="text-align:left">类型</th>
+<th style="text-align:left">默认值</th>
+<th>since</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">allowSamelineMultipleAnnotations</td>
+<td style="text-align:left">允许注解和目标对象在同一行</td>
+<td style="text-align:left">Boolean</td>
+<td style="text-align:left">false</td>
+<td>6.0</td>
+</tr>
+<tr>
+<td style="text-align:left">allowSamelineSingleParameterlessAnnotation</td>
+<td style="text-align:left">允许单个的无参注解和目标对象在同一行</td>
+<td style="text-align:left">Boolean</td>
+<td style="text-align:left">true</td>
+<td>6.1</td>
+</tr>
+<tr>
+<td style="text-align:left">allowSamelineParameterizedAnnotation</td>
+<td style="text-align:left">允许单个的有参注解和目标对象在同一行</td>
+<td style="text-align:left">Boolean</td>
+<td style="text-align:left">false</td>
+<td>6.4</td>
+</tr>
+<tr>
+<td style="text-align:left">tokens</td>
+<td style="text-align:left">tokens to check</td>
+<td style="text-align:left"><a href="#3-1-1-token类型">类型</a></td>
+<td style="text-align:left"><a href="#3-1-2-token默认值">默认值</a></td>
+<td>6.0</td>
+</tr>
+</tbody>
+</table>
+<h4 id="3-1-1-token类型"><a href="#3-1-1-token类型" class="headerlink" title="3.1.1 token类型"></a>3.1.1 token类型</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">CLASS_DEF, </div><div class="line">INTERFACE_DEF, </div><div class="line">ENUM_DEF, </div><div class="line">METHOD_DEF, </div><div class="line">CTOR_DEF, </div><div class="line">VARIABLE_DEF, </div><div class="line">PARAMETER_DEF,</div><div class="line">ANNOTATION_DEF, </div><div class="line">TYPECAST, </div><div class="line">LITERAL_THROWS, </div><div class="line">IMPLEMENTS_CLAUSE, </div><div class="line">TYPE_ARGUMENT, </div><div class="line">LITERAL_NEW, </div><div class="line">DOT, </div><div class="line">ANNOTATION_FIELD_DEF.</div></pre></td></tr></table></figure>
+<h4 id="3-1-2-token默认值"><a href="#3-1-2-token默认值" class="headerlink" title="3.1.2 token默认值"></a>3.1.2 token默认值</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">CLASS_DEF, </div><div class="line">INTERFACE_DEF, </div><div class="line">ENUM_DEF, </div><div class="line">METHOD_DEF, </div><div class="line">CTOR_DEF, </div><div class="line">VARIABLE_DEF.</div></pre></td></tr></table></figure></div><script type="text/javascript" src="/js/share.js?v=0.0.1" async></script><a data-url="http://blog.wenzy.top/2017/09/12/checkstyle标准checks/" data-id="cjhnh17p7000p2ico7bhzldk1" class="article-share-link">分享到</a><div class="tags"><a href="/tags/代码规范/">代码规范</a></div><div class="post-nav"><a href="/2017/09/19/几种常见的微服务编排模式/" class="pre">几种常见的微服务编排模式</a><a href="/2017/08/24/spring-cloud-zuul的一些记录/" class="next">spring-cloud-zuul的一些记录</a></div><div data-thread-key="2017/09/12/checkstyle标准checks/" data-title="checkstyle标准checks" data-url="http://blog.wenzy.top/2017/09/12/checkstyle标准checks/" data-author-key="1" class="ds-thread"></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form action="//www.baidu.com/baidu" method="get" accept-charset="utf-8" target="_blank" class="search-form"><input type="search" name="word" maxlength="20" placeholder="Search"/><input type="hidden" name="si" value="http://blog.wenzy.top"/><input name="tn" type="hidden" value="bds"/><input name="cl" type="hidden" value="3"/><input name="ct" type="hidden" value="2097152"/><input name="s" type="hidden" value="on"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/">数据库</a><span class="category-list-count">1</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/mysql/" style="font-size: 15px;">mysql</a> <a href="/tags/lua/" style="font-size: 15px;">lua</a> <a href="/tags/ElasticSearch/" style="font-size: 15px;">ElasticSearch</a> <a href="/tags/IntelliIdea-mybatis/" style="font-size: 15px;">IntelliIdea mybatis</a> <a href="/tags/java基础-equals-hashcode/" style="font-size: 15px;">java基础 equals hashcode</a> <a href="/tags/JVM/" style="font-size: 15px;">JVM</a> <a href="/tags/hexo/" style="font-size: 15px;">hexo</a> <a href="/tags/github/" style="font-size: 15px;">github</a> <a href="/tags/博客/" style="font-size: 15px;">博客</a> <a href="/tags/java8-lambda/" style="font-size: 15px;">java8 lambda</a> <a href="/tags/代码规范/" style="font-size: 15px;">代码规范</a> <a href="/tags/spring-data-redis-lua/" style="font-size: 15px;">spring-data-redis lua</a> <a href="/tags/java8-lambda-stream/" style="font-size: 15px;">java8 lambda stream</a> <a href="/tags/java-命令/" style="font-size: 15px;">java 命令</a> <a href="/tags/数据库/" style="font-size: 15px;">数据库</a> <a href="/tags/ElasticSearch-cluster-搜索/" style="font-size: 15px;">ElasticSearch cluster 搜索</a> <a href="/tags/主从/" style="font-size: 15px;">主从</a> <a href="/tags/数据库-oracle-mybatis/" style="font-size: 15px;">数据库 oracle mybatis</a> <a href="/tags/mysql-性能/" style="font-size: 15px;">mysql 性能</a> <a href="/tags/redis-集群/" style="font-size: 15px;">redis 集群</a> <a href="/tags/linux-scp/" style="font-size: 15px;">linux scp</a> <a href="/tags/spring-boot/" style="font-size: 15px;">spring boot</a> <a href="/tags/spring-cloud-zuul/" style="font-size: 15px;">spring-cloud zuul</a> <a href="/tags/springcloud-eureka/" style="font-size: 15px;">springcloud eureka</a> <a href="/tags/spring-事务/" style="font-size: 15px;">spring 事务</a> <a href="/tags/数据库-事务/" style="font-size: 15px;">数据库 事务</a> <a href="/tags/mysql-读写分离/" style="font-size: 15px;">mysql 读写分离</a> <a href="/tags/电商-库存/" style="font-size: 15px;">电商 库存</a> <a href="/tags/微服务/" style="font-size: 15px;">微服务</a> <a href="/tags/java基础-comparable-comparator/" style="font-size: 15px;">java基础 comparable comparator</a> <a href="/tags/面试/" style="font-size: 15px;">面试</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最新文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/10/31/mysql-explain详解/">mysql explain详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/26/京东到家库存系统/">京东到家库存系统</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/21/简单介绍Java中Comparable和Comparator/">简单介绍Java中Comparable和Comparator</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/21/Java中的equals-和hashcode-之间关系/">Java中的equals()和hashcode()之间关系</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/20/java命令学习/">java命令学习</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/20/JVM实用参数/">JVM实用参数</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/25/面试总结/">面试总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/19/几种常见的微服务编排模式/">几种常见的微服务编排模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/12/checkstyle标准checks/">checkstyle标准checks</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/24/spring-cloud-zuul的一些记录/">spring-cloud-zuul的一些记录</a></li></ul></div><div class="widget"><div class="comments-title"><i class="fa fa-comment-o"> 最近评论</i></div><div data-num-items="5" data-show-avatars="0" data-show-time="1" data-show-admin="0" data-excerpt-length="32" data-show-title="1" class="ds-recent-comments"></div></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">© <a href="/." rel="nofollow">wenzy.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a id="rocket" href="#top" class="show"></a><script type="text/javascript" src="/js/totop.js?v=0.0.1" async></script><script>var duoshuoQuery = {short_name:'wenzy'};
+(function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?fac8b898e6b30b65932e452ab3fce342";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+  })();
+</script><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.1"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.1"></script></div></body></html>

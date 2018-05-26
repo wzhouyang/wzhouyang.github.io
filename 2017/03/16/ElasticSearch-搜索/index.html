@@ -1,0 +1,106 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>Elasticsearch-搜索 | wenzy</title><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/5.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.2/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.2/grids-responsive-min.css"><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.1"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">Elasticsearch-搜索</h1><a id="logo" href="/.">wenzy</a><p class="description"></p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">Elasticsearch-搜索</h1><div class="post-meta">Mar 16, 2017<script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> Hits</span></span></div><a data-thread-key="2017/03/16/ElasticSearch-搜索/" href="/2017/03/16/ElasticSearch-搜索/#comments" class="ds-thread-count"></a><div class="post-content"><h3 id="空白搜索"><a href="#空白搜索" class="headerlink" title="空白搜索"></a>空白搜索</h3><p><code>GET /_search</code></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">"took"</span>: <span class="number">115</span>,</div><div class="line">  <span class="attr">"timed_out"</span>: <span class="literal">false</span>,</div><div class="line">  <span class="attr">"_shards"</span>: &#123;</div><div class="line">    <span class="attr">"total"</span>: <span class="number">8</span>,</div><div class="line">    <span class="attr">"successful"</span>: <span class="number">8</span>,</div><div class="line">    <span class="attr">"failed"</span>: <span class="number">0</span></div><div class="line">  &#125;,</div><div class="line">  <span class="attr">"hits"</span>: &#123;</div><div class="line">    <span class="attr">"total"</span>: <span class="number">19529</span>,</div><div class="line">    <span class="attr">"max_score"</span>: <span class="number">1</span>,</div><div class="line">    <span class="attr">"hits"</span>: [</div><div class="line">      &#123;</div><div class="line">        <span class="attr">"_index"</span>: <span class="string">".monitoring-data-2"</span>,</div><div class="line">        <span class="attr">"_type"</span>: <span class="string">"cluster_info"</span>,</div><div class="line">        <span class="attr">"_id"</span>: <span class="string">"zP0DzD_DR-uJrD4jp76dRw"</span>,</div><div class="line">        <span class="attr">"_score"</span>: <span class="number">1</span>,</div><div class="line">        <span class="attr">"_source"</span>: &#123;&#125;</div><div class="line">      &#125;</div><div class="line">    ]</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="hits"><a href="#hits" class="headerlink" title="hits"></a>hits</h4><p>指明匹配查询文档的总数。hits则会匹配前十个匹配文档-搜索结果</p>
+<p>hits数组中，没一条结果都包含文档的_index,_type,_id信息以及 _source字段。</p>
+<p>每一个元素还拥有一个_score字段。这个是相关性评分，这个数值表示当前文档与查询的匹配程度。通常来说，搜索结果会先返回最匹配的文档，也就是说它们会按照_score由高至低进行排列。在这个例子中，我们并没有声明任何查询，因此_score就都会返回1</p>
+<p>max_score数值会显示所有匹配文档中的_score的最大值。</p>
+<h4 id="took"><a href="#took" class="headerlink" title="took"></a>took</h4><p>took数值告诉执行这次搜索请求锁耗费的毫秒时间。</p>
+<h4 id="shards"><a href="#shards" class="headerlink" title="shards"></a>shards</h4><p>_shards告诉了我们参与查询分片的总数，以及有多少successful和failed。通常情况下我们是不会得到失败的反馈，但是有的时候它会发生。如果我们的服务器突然出现了重大事故，然后我们丢失了同一个分片中主从两个版本的数据。在查询请求中，无法提供可用的备份。这种情况下，Elasticsearch就会返回`failed提示，但是它还会继续返回剩下的内容。</p>
+<h4 id="timeout"><a href="#timeout" class="headerlink" title="timeout"></a>timeout</h4><p>timed_out数值告诉了我们查询是否超时。通常，搜索请求不会超时。如果相比完整的结果你更需要的是快速的响应时间，这是你可以指定timeout值，例如10、”10ms”（10毫秒）或者”1s”（1秒钟）</p>
+<p><code>GET /_search?timeout=10ms</code></p>
+<h3 id="多索引，多类型"><a href="#多索引，多类型" class="headerlink" title="多索引，多类型"></a>多索引，多类型</h3><table>
+<thead>
+<tr>
+<th>URL</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/_search</td>
+<td>搜索所有的索引和类型</td>
+</tr>
+<tr>
+<td>/gb/_search</td>
+<td>搜索索引gb中的所有类型</td>
+</tr>
+<tr>
+<td>/gb,us/_search</td>
+<td>搜索索引gb以及us中的所有类型</td>
+</tr>
+<tr>
+<td>/g<em>,u</em>/_search</td>
+<td>搜索所有以g或u开头的索引中的所有类型</td>
+</tr>
+<tr>
+<td>/gb/user/_search</td>
+<td>搜索索引gb中类型user内的所有文档</td>
+</tr>
+<tr>
+<td>/gb,us/user,tweet/_search</td>
+<td>搜索索引gb和 索引us中类型user以及类型tweet内的所有文档</td>
+</tr>
+<tr>
+<td>/_all/user,tweet/_search</td>
+<td>搜索所有索引中类型为user以及tweet内的所有文档</td>
+</tr>
+</tbody>
+</table>
+<p><strong>搜索一个拥有五个主分片的索引与搜索五个都只拥有一个主分片是完全一样的。</strong></p>
+<h3 id="分页"><a href="#分页" class="headerlink" title="分页"></a>分页</h3><table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>size</td>
+<td>每页返回多少结果,默认10</td>
+</tr>
+<tr>
+<td>from</td>
+<td>从第几条开始，默认0</td>
+</tr>
+</tbody>
+</table>
+<p>1到3页的分页如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">GET /_search?size=5</div><div class="line"></div><div class="line">GET /_search?size=5&amp;from=5</div><div class="line"></div><div class="line">GET /_search?size=5&amp;from=10</div></pre></td></tr></table></figure>
+<blockquote>
+<p>分布式系统中的大页码页面</p>
+<p>为了说明白为什么页码过大的请求会产生问题，我们就先预想一下我们在搜索一个拥有5个主分片的索引。当我们请求第一页搜索的时候，每个分片产生自己前十名，然后将它们返回给请求节点，然后这个节点会将50条结果重新排序以产生最终的前十名。</p>
+<p>现在想想一下我们想获得第1,000页，也就是第10,001到第10,010条结果，与之前同理，每一个分片都会先产生自己的前10,010名，然后请求节点统一处理这50,050条结果，然后再丢弃掉其中的50,040条！</p>
+<p>现在你应该明白了，在分布式系统中，大页码请求所消耗的系统资源是呈指数式增长的。这也是为什么网络搜索引擎不会提供超过1,000条搜索结果的原因。</p>
+</blockquote>
+<h3 id="精简搜索"><a href="#精简搜索" class="headerlink" title="精简搜索"></a>精简搜索</h3><p>查询所有tweet类型中，所有tweet字段为”elasticsearch”的文档</p>
+<p><code>GET /_all/tweet/_search?q=tweet:elasticsearch</code></p>
+<p>想要寻找name字段为”john”且tweet字段为”mary”的文档</p>
+<p><code>+name:john +tweet:mary</code></p>
+<p>前缀”+”表示必须要满足我们的查询匹配条件，而前缀”-“则表示绝对不能匹配条件。没有+或者-的表示可选条件。匹配的越多，文档的相关性就越大。</p>
+<h4 id="字段-all"><a href="#字段-all" class="headerlink" title="字段_all"></a>字段_all</h4><p><code>GET /_search?q=mary</code></p>
+<p>当我们在索引一个文档的时候，Elasticsearch会将所有字段的数值都汇总到一个大的字符串中，并将它索引成一个特殊的字段_all</p>
+<h4 id="更加复杂的查询"><a href="#更加复杂的查询" class="headerlink" title="更加复杂的查询"></a>更加复杂的查询</h4><p>再实现一个查询：</p>
+<ul>
+<li>字段name包含”mary”或”john”</li>
+<li>date大于2014-09-10</li>
+<li>_all字段中包含”aggregations”或”geo”</li>
+</ul>
+<p><code>+name:(mary john) +date:&gt;2014-09-10 +(aggregations geo)</code></p>
+</div><script type="text/javascript" src="/js/share.js?v=0.0.1" async></script><a data-url="http://blog.wenzy.top/2017/03/16/ElasticSearch-搜索/" data-id="cjhnh17ox000e2ico1h8xg8vl" class="article-share-link">分享到</a><div class="tags"><a href="/tags/ElasticSearch/">ElasticSearch</a></div><div class="post-nav"><a href="/2017/03/20/mysql5-7主从配置/" class="pre">mysql5.7主从配置</a><a href="/2017/03/16/ElasticSearch-存储/" class="next">elasticsearch-存储</a></div><div data-thread-key="2017/03/16/ElasticSearch-搜索/" data-title="Elasticsearch-搜索" data-url="http://blog.wenzy.top/2017/03/16/ElasticSearch-搜索/" data-author-key="1" class="ds-thread"></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form action="//www.baidu.com/baidu" method="get" accept-charset="utf-8" target="_blank" class="search-form"><input type="search" name="word" maxlength="20" placeholder="Search"/><input type="hidden" name="si" value="http://blog.wenzy.top"/><input name="tn" type="hidden" value="bds"/><input name="cl" type="hidden" value="3"/><input name="ct" type="hidden" value="2097152"/><input name="s" type="hidden" value="on"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/">数据库</a><span class="category-list-count">1</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/mysql/" style="font-size: 15px;">mysql</a> <a href="/tags/lua/" style="font-size: 15px;">lua</a> <a href="/tags/ElasticSearch/" style="font-size: 15px;">ElasticSearch</a> <a href="/tags/IntelliIdea-mybatis/" style="font-size: 15px;">IntelliIdea mybatis</a> <a href="/tags/java基础-equals-hashcode/" style="font-size: 15px;">java基础 equals hashcode</a> <a href="/tags/JVM/" style="font-size: 15px;">JVM</a> <a href="/tags/hexo/" style="font-size: 15px;">hexo</a> <a href="/tags/github/" style="font-size: 15px;">github</a> <a href="/tags/博客/" style="font-size: 15px;">博客</a> <a href="/tags/java8-lambda/" style="font-size: 15px;">java8 lambda</a> <a href="/tags/代码规范/" style="font-size: 15px;">代码规范</a> <a href="/tags/spring-data-redis-lua/" style="font-size: 15px;">spring-data-redis lua</a> <a href="/tags/java8-lambda-stream/" style="font-size: 15px;">java8 lambda stream</a> <a href="/tags/java-命令/" style="font-size: 15px;">java 命令</a> <a href="/tags/数据库/" style="font-size: 15px;">数据库</a> <a href="/tags/ElasticSearch-cluster-搜索/" style="font-size: 15px;">ElasticSearch cluster 搜索</a> <a href="/tags/主从/" style="font-size: 15px;">主从</a> <a href="/tags/数据库-oracle-mybatis/" style="font-size: 15px;">数据库 oracle mybatis</a> <a href="/tags/mysql-性能/" style="font-size: 15px;">mysql 性能</a> <a href="/tags/redis-集群/" style="font-size: 15px;">redis 集群</a> <a href="/tags/linux-scp/" style="font-size: 15px;">linux scp</a> <a href="/tags/spring-boot/" style="font-size: 15px;">spring boot</a> <a href="/tags/spring-cloud-zuul/" style="font-size: 15px;">spring-cloud zuul</a> <a href="/tags/springcloud-eureka/" style="font-size: 15px;">springcloud eureka</a> <a href="/tags/spring-事务/" style="font-size: 15px;">spring 事务</a> <a href="/tags/数据库-事务/" style="font-size: 15px;">数据库 事务</a> <a href="/tags/mysql-读写分离/" style="font-size: 15px;">mysql 读写分离</a> <a href="/tags/电商-库存/" style="font-size: 15px;">电商 库存</a> <a href="/tags/微服务/" style="font-size: 15px;">微服务</a> <a href="/tags/java基础-comparable-comparator/" style="font-size: 15px;">java基础 comparable comparator</a> <a href="/tags/面试/" style="font-size: 15px;">面试</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最新文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/10/31/mysql-explain详解/">mysql explain详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/26/京东到家库存系统/">京东到家库存系统</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/21/简单介绍Java中Comparable和Comparator/">简单介绍Java中Comparable和Comparator</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/21/Java中的equals-和hashcode-之间关系/">Java中的equals()和hashcode()之间关系</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/20/java命令学习/">java命令学习</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/20/JVM实用参数/">JVM实用参数</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/25/面试总结/">面试总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/19/几种常见的微服务编排模式/">几种常见的微服务编排模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/12/checkstyle标准checks/">checkstyle标准checks</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/24/spring-cloud-zuul的一些记录/">spring-cloud-zuul的一些记录</a></li></ul></div><div class="widget"><div class="comments-title"><i class="fa fa-comment-o"> 最近评论</i></div><div data-num-items="5" data-show-avatars="0" data-show-time="1" data-show-admin="0" data-excerpt-length="32" data-show-title="1" class="ds-recent-comments"></div></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">© <a href="/." rel="nofollow">wenzy.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a id="rocket" href="#top" class="show"></a><script type="text/javascript" src="/js/totop.js?v=0.0.1" async></script><script>var duoshuoQuery = {short_name:'wenzy'};
+(function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?fac8b898e6b30b65932e452ab3fce342";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+  })();
+</script><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.1"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.1"></script></div></body></html>

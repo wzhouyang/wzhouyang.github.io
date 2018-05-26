@@ -1,0 +1,217 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>微服务与单体架构对比 | wenzy</title><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/5.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.2/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.2/grids-responsive-min.css"><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.1"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">微服务与单体架构对比</h1><a id="logo" href="/.">wenzy</a><p class="description"></p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">微服务与单体架构对比</h1><div class="post-meta">Aug 17, 2017<script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> Hits</span></span></div><a data-thread-key="2017/08/17/微服务与单体架构对比/" href="/2017/08/17/微服务与单体架构对比/#comments" class="ds-thread-count"></a><div class="post-content"><p>copy from <a href="http://www.infoq.com/cn/articles/micro-service-architecture-from-zero?utm_campaign=infoq_content&amp;utm_source=infoq&amp;utm_medium=feed&amp;utm_term=global" target="_blank" rel="external">infoq</a></p>
+<h3 id="一、微服务架构与单体架构的对比"><a href="#一、微服务架构与单体架构的对比" class="headerlink" title="一、微服务架构与单体架构的对比"></a>一、微服务架构与单体架构的对比</h3><table>
+<thead>
+<tr>
+<th>S/N</th>
+<th>对比点</th>
+<th>微服务架构</th>
+<th>单体架构</th>
+<th>结论</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>上手难度</td>
+<td>API接口调用</td>
+<td>数据库共享或本地程序调用</td>
+<td>单体架构胜</td>
+</tr>
+<tr>
+<td>2.1</td>
+<td>开发效率（简单项目）</td>
+<td>早期设计和沟通的工作量加大，随着项目规模和时间的推移，效率变化不大</td>
+<td>早期工作量小，随着项目规模和时间的推移，效率大幅度下降</td>
+<td>单体架构胜</td>
+</tr>
+<tr>
+<td>2.2</td>
+<td>开发效率（复杂项目）</td>
+<td>早期设计和沟通的工作量加大，随着项目规模和时间的推移，效率变化不大</td>
+<td>早期工作量小，随着项目规模和时间的推移，效率大幅度下降</td>
+<td>微服务架构胜</td>
+</tr>
+<tr>
+<td>3</td>
+<td>系统设计（高内聚低耦合）</td>
+<td>每个业务单独包装成一个微服务，数据和代码都从物理上隔离开来，实现高内聚低耦合相对容易</td>
+<td>以包的形式对代码进行模块划分，控制得当即可实现高内聚。但最终都是在数据层面将整个系统耦合在一起</td>
+<td>微服务架构胜</td>
+</tr>
+<tr>
+<td>4</td>
+<td>系统设计（扩展性）</td>
+<td>独立开发新模块，通过API与现有模块交互</td>
+<td>在现有系统上修改，与现存业务逻辑高度耦合</td>
+<td>微服务架构胜</td>
+</tr>
+<tr>
+<td>5</td>
+<td>需求变更响应速度</td>
+<td>各个微服务组件独立变更，容易实施敏捷开发方法</td>
+<td>需要了解整个系统才可以正确修改，容易导致不相关模块的意外失败</td>
+<td>微服务架构胜</td>
+</tr>
+<tr>
+<td>6</td>
+<td>系统升级效率</td>
+<td>各个微服务组件独立升级，上手和开发效率高，影响面小</td>
+<td>需要了解整个系统才可以正确修改，容易导致不相关模块的意外失败</td>
+<td>微服务架构胜</td>
+</tr>
+<tr>
+<td>7</td>
+<td>运维效率</td>
+<td>大系统被拆分为多个小系统，部署和运维难度加大，但可以利用DevOps等方式将运维工作自动化</td>
+<td>简单直接</td>
+<td>单体架构胜</td>
+</tr>
+<tr>
+<td>8</td>
+<td>知识积累</td>
+<td>微服务组件可以在新项目中直接复用，包括前端页面</td>
+<td>一般以共享库的形式复用后台代码</td>
+<td>微服务架构胜</td>
+</tr>
+<tr>
+<td>9.1</td>
+<td>硬件需求（简单项目）</td>
+<td>一个系统需部署多个微服务，需要启动多个运行容器</td>
+<td>整个系统只需要一个运行容器</td>
+<td>单体架构胜</td>
+</tr>
+<tr>
+<td>9.2</td>
+<td>硬件需求（高要求项目）</td>
+<td>按需为不同业务模块伸缩资源节点</td>
+<td>为整个系统分配资源，导致冗余</td>
+<td>微服务架构胜</td>
+</tr>
+<tr>
+<td>10.1</td>
+<td>项目成本（简单系统）</td>
+<td>项目早期和后期，成本变化曲线平缓</td>
+<td>项目早期成本低，后期成本大</td>
+<td>单体架构胜</td>
+</tr>
+<tr>
+<td>10.2</td>
+<td>项目成本（复杂系统）</td>
+<td>项目早期和后期，成本变化曲线平缓</td>
+<td>项目早期成本低，后期成本大</td>
+<td>微服务架构胜</td>
+</tr>
+<tr>
+<td>11</td>
+<td>非功能需求</td>
+<td>为单独的微服务按需调优，甚至更换实现方式和程序语言</td>
+<td>为整个系统调优，牵一发而动全身</td>
+<td>微服务架构胜</td>
+</tr>
+<tr>
+<td>12</td>
+<td>职责、成就感</td>
+<td>拥有明确的职责划分，主人翁意识和成就感加强，容易形成自组织型团队</td>
+<td>职责不明确，容易产生扯皮行为</td>
+<td>微服务架构胜</td>
+</tr>
+<tr>
+<td>13</td>
+<td>风险</td>
+<td>大系统被拆分为小系统，风险可被控制在小系统内，但也引入了各小系统之间的交互风险</td>
+<td>系统是一个整体，一荣俱荣，一损俱损</td>
+<td>微服务架构胜</td>
+</tr>
+</tbody>
+</table>
+<p><strong>结论:</strong></p>
+<p>对于<strong>简单项目</strong>来说，单体架构5胜8败。（优势项：开发效率、上手难度、运维效率、硬件需求、项目成本；劣势项：系统设计（高内聚低耦合）、系统设计（扩展性）、需求变更响应速度、系统升级效率、知识积累、非功能需求、职责、成就感、风险）</p>
+<p>对于<strong>复杂项目</strong>来说，单体架构2胜11败。（优势项：上手难度、运维效率；劣势项：硬件需求、项目成本、开发效率、系统设计（高内聚低耦合）、系统设计（扩展性）、需求变更响应速度、系统升级效率、知识积累、非功能需求、职责、成就感、风险；）</p>
+<h3 id="二、微服务与共享库的对比"><a href="#二、微服务与共享库的对比" class="headerlink" title="二、微服务与共享库的对比"></a>二、微服务与共享库的对比</h3><p>注：这里以使用方自行安装微服务为场景来比较。这里的共享库指的是像Java中的公共jar依赖。</p>
+<table>
+<thead>
+<tr>
+<th>S/N</th>
+<th>对比点</th>
+<th>微服务</th>
+<th>共享库</th>
+<th>结论</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>易用性</td>
+<td>整体安装 + API调用    共享库引用 + 本地调用</td>
+<td>平手</td>
+</tr>
+<tr>
+<td>2</td>
+<td>程序耦合度</td>
+<td>微服务为完整的业务逻辑单元，通过API的形式为其它模块提供服务</td>
+<td>在使用方的源代码中引用共享库的类和方法    平手</td>
+</tr>
+<tr>
+<td>3</td>
+<td>版本升级</td>
+<td>单独升级，其它模块无感知</td>
+<td>修改源代码，升级使用方的代码版本，例如pom.xml, build.gradle</td>
+<td>微服务架构胜</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Bug修复</td>
+<td>单独升级，自动生效    修改源代码，升级使用方的代码版本，例如pom.xml, build.gradle</td>
+<td>微服务架构胜</td>
+</tr>
+<tr>
+<td>5</td>
+<td>非功能需求</td>
+<td>为单独的微服务优化或扩缩容；在需求更高的情况下，可以重新设计或使用不同的程序语言    为整个业务系统优化或扩缩容，共享库的程序语言必须和业务系统的程序语言相同</td>
+<td>微服务架构胜</td>
+</tr>
+<tr>
+<td>6</td>
+<td>复用程度</td>
+<td>可以复用从前端页面到后台数据库的整个业务逻辑和代码</td>
+<td>可以复用后台代码和数据库，但程序语言需要和业务系统保持一致</td>
+<td>微服务架构胜</td>
+</tr>
+</tbody>
+</table>
+<p><strong>什么场景需要用微服务架构？</strong></p>
+<p>看了上面的比较，微服务架构可以说是以压倒性的优势胜过单体架构和共享库，会让人产生一种错觉，微服务架构就是软件开发中的银弹。</p>
+<p>但是，正如大家所了解的，软件研发是一个系统工程，它没有银弹，不能够一招鲜吃遍天。正如当年的CMMI和敏捷方法一样，敏捷虽好，但它不一定能适用于所有的场景，它对组织环境、团队氛围、沟通方式、技术能力这些都是有一些要求的，如果用不好，反而会带来一些负面影响。</p>
+<p>那么，我们什么时候需要采用微服务呢？从我个人的经验来看，我认为有三种场景可以考虑使用微服务。</p>
+<ol>
+<li>规模大（团队超过10人）</li>
+<li>业务复杂度高（系统超过5个子模块）</li>
+<li>需要长期演进（项目开发和维护周期超过半年）</li>
+</ol>
+<p><img src="微服务与单体架构对比/3.jpg" alt="logo"></p>
+<p>横轴是复杂度，纵轴是生产效率。从生产效率的角度来讲，在两条曲线的交叉点之前，单体架构是占优势的，过了交叉点之后，单体架构的生产效率将大幅度下降。</p>
+<p>所以很多专家和同行朋友都说，我们可以在开始的时候先使用单体架构，当业务发展到一定程度的时候，再重构成微服务架构。对于这一点，我是持保留意见的，因为在实践中，架构改造的难度还是很大的，会有一些问题，例如:</p>
+<ul>
+<li>客户或业务部门是否给我们这样的时间窗口？</li>
+<li>这段时间的研发经费是否有出处？</li>
+<li>项目负责人或技术团队是否有主动的意愿进行架构升级？</li>
+<li>项目负责人或技术团队是否愿意为架构升级带来的不稳定风险负责？</li>
+</ul>
+<p>我们常常听到的一句话是：暂时先这样，等我们没这么忙的时候，再来优化一下。但是，绝大多数情况下，这一天从来没有出现过。</p>
+</div><script type="text/javascript" src="/js/share.js?v=0.0.1" async></script><a data-url="http://blog.wenzy.top/2017/08/17/微服务与单体架构对比/" data-id="cjhnh17qb001v2icoqstnn5o0" class="article-share-link">分享到</a><div class="tags"><a href="/tags/微服务/">微服务</a></div><div class="post-nav"><a href="/2017/08/24/spring-cloud-zuul的一些记录/" class="pre">spring-cloud-zuul的一些记录</a><a href="/2017/07/22/4-函数/" class="next">4.函数</a></div><div data-thread-key="2017/08/17/微服务与单体架构对比/" data-title="微服务与单体架构对比" data-url="http://blog.wenzy.top/2017/08/17/微服务与单体架构对比/" data-author-key="1" class="ds-thread"></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form action="//www.baidu.com/baidu" method="get" accept-charset="utf-8" target="_blank" class="search-form"><input type="search" name="word" maxlength="20" placeholder="Search"/><input type="hidden" name="si" value="http://blog.wenzy.top"/><input name="tn" type="hidden" value="bds"/><input name="cl" type="hidden" value="3"/><input name="ct" type="hidden" value="2097152"/><input name="s" type="hidden" value="on"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/">数据库</a><span class="category-list-count">1</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/mysql/" style="font-size: 15px;">mysql</a> <a href="/tags/lua/" style="font-size: 15px;">lua</a> <a href="/tags/ElasticSearch/" style="font-size: 15px;">ElasticSearch</a> <a href="/tags/IntelliIdea-mybatis/" style="font-size: 15px;">IntelliIdea mybatis</a> <a href="/tags/java基础-equals-hashcode/" style="font-size: 15px;">java基础 equals hashcode</a> <a href="/tags/JVM/" style="font-size: 15px;">JVM</a> <a href="/tags/hexo/" style="font-size: 15px;">hexo</a> <a href="/tags/github/" style="font-size: 15px;">github</a> <a href="/tags/博客/" style="font-size: 15px;">博客</a> <a href="/tags/java8-lambda/" style="font-size: 15px;">java8 lambda</a> <a href="/tags/代码规范/" style="font-size: 15px;">代码规范</a> <a href="/tags/spring-data-redis-lua/" style="font-size: 15px;">spring-data-redis lua</a> <a href="/tags/java8-lambda-stream/" style="font-size: 15px;">java8 lambda stream</a> <a href="/tags/java-命令/" style="font-size: 15px;">java 命令</a> <a href="/tags/数据库/" style="font-size: 15px;">数据库</a> <a href="/tags/ElasticSearch-cluster-搜索/" style="font-size: 15px;">ElasticSearch cluster 搜索</a> <a href="/tags/主从/" style="font-size: 15px;">主从</a> <a href="/tags/数据库-oracle-mybatis/" style="font-size: 15px;">数据库 oracle mybatis</a> <a href="/tags/mysql-性能/" style="font-size: 15px;">mysql 性能</a> <a href="/tags/redis-集群/" style="font-size: 15px;">redis 集群</a> <a href="/tags/linux-scp/" style="font-size: 15px;">linux scp</a> <a href="/tags/spring-boot/" style="font-size: 15px;">spring boot</a> <a href="/tags/spring-cloud-zuul/" style="font-size: 15px;">spring-cloud zuul</a> <a href="/tags/springcloud-eureka/" style="font-size: 15px;">springcloud eureka</a> <a href="/tags/spring-事务/" style="font-size: 15px;">spring 事务</a> <a href="/tags/数据库-事务/" style="font-size: 15px;">数据库 事务</a> <a href="/tags/mysql-读写分离/" style="font-size: 15px;">mysql 读写分离</a> <a href="/tags/电商-库存/" style="font-size: 15px;">电商 库存</a> <a href="/tags/微服务/" style="font-size: 15px;">微服务</a> <a href="/tags/java基础-comparable-comparator/" style="font-size: 15px;">java基础 comparable comparator</a> <a href="/tags/面试/" style="font-size: 15px;">面试</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最新文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/10/31/mysql-explain详解/">mysql explain详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/26/京东到家库存系统/">京东到家库存系统</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/21/简单介绍Java中Comparable和Comparator/">简单介绍Java中Comparable和Comparator</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/21/Java中的equals-和hashcode-之间关系/">Java中的equals()和hashcode()之间关系</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/20/java命令学习/">java命令学习</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/20/JVM实用参数/">JVM实用参数</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/25/面试总结/">面试总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/19/几种常见的微服务编排模式/">几种常见的微服务编排模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/12/checkstyle标准checks/">checkstyle标准checks</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/24/spring-cloud-zuul的一些记录/">spring-cloud-zuul的一些记录</a></li></ul></div><div class="widget"><div class="comments-title"><i class="fa fa-comment-o"> 最近评论</i></div><div data-num-items="5" data-show-avatars="0" data-show-time="1" data-show-admin="0" data-excerpt-length="32" data-show-title="1" class="ds-recent-comments"></div></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">© <a href="/." rel="nofollow">wenzy.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a id="rocket" href="#top" class="show"></a><script type="text/javascript" src="/js/totop.js?v=0.0.1" async></script><script>var duoshuoQuery = {short_name:'wenzy'};
+(function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?fac8b898e6b30b65932e452ab3fce342";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+  })();
+</script><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.1"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.1"></script></div></body></html>
